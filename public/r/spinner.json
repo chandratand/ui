@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "Spinner",
+  "description": "Indeterminate loading status. Sizes sm/md/lg; stops spinning under reduced motion.",
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/chandratand/ui/spinner.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { LoaderCircle } from \"lucide-react\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst spinnerVariants = cva(\n  \"shrink-0 animate-spin stroke-[1.5] motion-reduce:animate-none\",\n  {\n    variants: {\n      size: {\n        sm: \"size-icon-sm\",\n        md: \"size-icon-lg\",\n        lg: \"size-8\",\n      },\n    },\n    defaultVariants: {\n      size: \"md\",\n    },\n  },\n);\n\nexport interface SpinnerProps\n  extends React.ComponentProps<\"svg\">,\n    VariantProps<typeof spinnerVariants> {}\n\n/**\n * Indeterminate loading: the wait has no known length. Use Progress when you can say how far\n * along it is, and Skeleton when the shape of the coming content is known.\n *\n * Announced as a status named \"Loading\"; pass `aria-label` to say what is loading. Inside a\n * control that already says it (a \"Saving\" button), pass `aria-hidden` so the name is not read twice.\n * Takes the current text colour, and stops spinning under reduced motion.\n */\nfunction Spinner({ className, size, \"aria-label\": ariaLabel = \"Loading\", ...props }: SpinnerProps) {\n  return (\n    <LoaderCircle\n      data-slot=\"spinner\"\n      role=\"status\"\n      aria-label={ariaLabel}\n      className={cn(spinnerVariants({ size }), className)}\n      {...props}\n    />\n  );\n}\n\nexport { Spinner, spinnerVariants };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
