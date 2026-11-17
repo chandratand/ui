@@ -413,6 +413,27 @@
       ]
     },
     {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Side panel from any edge for secondary content and forms. Dialog semantics, overlay scrim, shadow-lg, widths sm/md/lg.",
+      "dependencies": [
+        "radix-ui",
+        "class-variance-authority",
+        "lucide-react",
+        "tw-animate-css"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "alert-dialog",
       "type": "registry:ui",
       "title": "Alert Dialog",
