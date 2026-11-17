@@ -651,6 +651,28 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Search and pick one value from a long list. Command in a Popover; trigger matches Select (sizes sm/md/lg).",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/button",
+        "chandratand/ui/command",
+        "chandratand/ui/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
