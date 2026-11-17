@@ -8,6 +8,7 @@ No version tags or changesets: the date is the version.
 
 ## 2026-11-17
 
+- Docs site: `/docs/<name>` reads its URL param inside `<Suspense>`, so client navigation shows the shared page chrome at once and streams the item content. No registry item changed, so nothing to re-pull.
 - Docs site: each Component and Block gets its own page at `/docs/<name>`, generated from `registry.json`. `button` is the first; the rest move over from the demo page next. No registry item changed, so nothing to re-pull.
 - **Breaking** · `tokens`: removed the `saas` Brand. Its `[data-brand="saas"]` overrides were identical to the default, so nothing changes visually, but `shadcn add` merges CSS and does not delete it: remove the `[data-brand="saas"]` rules from your `globals.css` by hand, and drop `data-brand="saas"` from `<html>`. The `data-brand` mechanism stays; see `docs/design-system.md` §3 for how to add a Brand.
 - `tokens`: added `overlay`, the scrim behind dialogs and sheets.
