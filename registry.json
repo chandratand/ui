@@ -631,6 +631,48 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "Month grid for picking a day or a range, on react-day-picker. Localized through the locale prop.",
+      "dependencies": [
+        "react-day-picker",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/button"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Single-date field: a trigger that opens a Calendar in a Popover. locale and displayFormat props, trigger sizes sm/md/lg.",
+      "dependencies": [
+        "date-fns",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/button",
+        "chandratand/ui/calendar",
+        "chandratand/ui/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/date-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
