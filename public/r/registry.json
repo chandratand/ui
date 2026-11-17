@@ -631,6 +631,26 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Page navigation landmark: current page, labelled previous/next, ellipsis. Sizes sm/md/lg. asChild for framework links.",
+      "dependencies": [
+        "radix-ui",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/button"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
