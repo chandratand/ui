@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 
 import { ButtonDocs } from "./button";
+import { EmptyDocs } from "./empty";
 import { PaginationDocs } from "./pagination";
 import { SpinnerDocs } from "./spinner";
 
@@ -9,4 +10,5 @@ export const docsPages: Record<string, ComponentType> = {
   button: ButtonDocs,
   pagination: PaginationDocs,
   spinner: SpinnerDocs,
+  empty: EmptyDocs,
 };

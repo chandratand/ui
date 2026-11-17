@@ -670,6 +670,25 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "Empty state: media, title, description and an optional next action. Says why in text, not colour.",
+      "dependencies": [
+        "radix-ui",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
