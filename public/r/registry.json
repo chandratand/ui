@@ -631,6 +631,27 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Label, hint and error wired to their control with aria-describedby and aria-invalid. Works with any form library or none.",
+      "dependencies": [
+        "radix-ui",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/label"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
