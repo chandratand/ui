@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Command as CommandPrimitive } from "cmdk";
+import { Command as CommandPrimitive, useCommandState } from "cmdk";
 import { Search } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -138,13 +138,19 @@ function CommandGroup({
   );
 }
 
-function CommandSeparator({
-  className,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.Separator>) {
+export interface CommandSeparatorProps extends React.ComponentProps<"div"> {
+  /** Keep showing it while the user searches. Default false, like cmdk. */
+  alwaysRender?: boolean;
+}
+
+// Not cmdk's Separator: it hardcodes role="separator", which a listbox may not contain (axe).
+function CommandSeparator({ className, alwaysRender = false, ...props }: CommandSeparatorProps) {
+  const searching = useCommandState((state) => state.search !== "");
+  if (searching && !alwaysRender) return null;
   return (
-    <CommandPrimitive.Separator
+    <div
       data-slot="command-separator"
+      role="none"
       className={cn("-mx-1 h-px bg-border", className)}
       {...props}
     />
