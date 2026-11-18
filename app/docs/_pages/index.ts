@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import { ButtonDocs } from "./button";
 import { CalendarDocs } from "./calendar";
 import { DatePickerDocs } from "./date-picker";
+import { FieldDocs } from "./field";
 import { SheetDocs } from "./sheet";
 import { EmptyDocs } from "./empty";
 import { PaginationDocs } from "./pagination";
@@ -13,6 +14,7 @@ export const docsPages: Record<string, ComponentType> = {
   button: ButtonDocs,
   calendar: CalendarDocs,
   "date-picker": DatePickerDocs,
+  field: FieldDocs,
   sheet: SheetDocs,
   pagination: PaginationDocs,
   spinner: SpinnerDocs,
