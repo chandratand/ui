@@ -4,6 +4,9 @@ import { ButtonDocs } from "./button";
 import { CalendarDocs } from "./calendar";
 import { DatePickerDocs } from "./date-picker";
 import { FieldDocs } from "./field";
+import { ProgressDocs } from "./progress";
+import { AccordionDocs } from "./accordion";
+import { ScrollAreaDocs } from "./scroll-area";
 import { SheetDocs } from "./sheet";
 import { EmptyDocs } from "./empty";
 import { PaginationDocs } from "./pagination";
@@ -15,6 +18,9 @@ export const docsPages: Record<string, ComponentType> = {
   calendar: CalendarDocs,
   "date-picker": DatePickerDocs,
   field: FieldDocs,
+  progress: ProgressDocs,
+  accordion: AccordionDocs,
+  "scroll-area": ScrollAreaDocs,
   sheet: SheetDocs,
   pagination: PaginationDocs,
   spinner: SpinnerDocs,
