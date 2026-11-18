@@ -8,6 +8,7 @@ No version tags or changesets: the date is the version.
 
 ## 2026-11-17
 
+- Added `pagination` (navigation landmark, current page, labelled previous/next, `asChild` for router links), `spinner` (indeterminate loading status, stops under reduced motion) and `empty` (empty state with title, description and optional action). `pagination` installs `chandratand/ui/button`.
 - Added `calendar` (month grid on react-day-picker, installable on its own) and `date-picker` (a single-date field: `calendar` in a `popover` behind a `button` trigger). Locale and display format are props (`locale`, `displayFormat`) defaulting to en-US and `"PPP"`; the trigger takes `size` sm/md/lg.
 - Added `sheet`: side panel from any edge (`side` top/right/bottom/left, default right) for secondary content and forms, built on the Radix dialog primitive. Overlay scrim, `shadow-lg`, widths `sm`/`md`/`lg` for side panels, motion collapses under reduced motion. Docs at `/docs/sheet`.
 - Docs site: `/docs/<name>` reads its URL param inside `<Suspense>`, so client navigation shows the shared page chrome at once and streams the item content. No registry item changed, so nothing to re-pull.
