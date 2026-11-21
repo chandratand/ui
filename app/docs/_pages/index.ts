@@ -11,6 +11,8 @@ import { SheetDocs } from "./sheet";
 import { EmptyDocs } from "./empty";
 import { PaginationDocs } from "./pagination";
 import { SpinnerDocs } from "./spinner";
+import { ComboboxDocs } from "./combobox";
+import { CommandDocs } from "./command";
 
 /** Docs page body per registry item name. Items missing here 404 until they are migrated. */
 export const docsPages: Record<string, ComponentType> = {
@@ -25,4 +27,6 @@ export const docsPages: Record<string, ComponentType> = {
   pagination: PaginationDocs,
   spinner: SpinnerDocs,
   empty: EmptyDocs,
+  command: CommandDocs,
+  combobox: ComboboxDocs,
 };

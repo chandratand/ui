@@ -828,6 +828,48 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Searchable list filtered as you type (cmdk). Inline, as a command palette in a dialog, or inside Combobox.",
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/dialog"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Search and pick one value from a long list. Command in a Popover; trigger matches Select (sizes sm/md/lg).",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/button",
+        "chandratand/ui/command",
+        "chandratand/ui/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

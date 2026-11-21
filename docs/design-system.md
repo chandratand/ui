@@ -287,7 +287,7 @@ A change to a registry item (tokens or a component) is done when:
 
 | Status | Components |
 | --- | --- |
-| **Done** | tokens · Button · Input · Textarea · Label · Select · Checkbox · Radio Group · Switch · Card · Badge · Alert · Dialog · Alert Dialog · Dropdown Menu · Popover · Tooltip · Toast (sonner) · Tabs · Table · Separator · Skeleton · Avatar · Sheet · Calendar · Date Picker · Pagination · Spinner · Empty · Field · Progress · Accordion · Scroll Area |
-| **Priority 2** | Sidebar · Breadcrumb · Command / Combobox |
+| **Done** | tokens · Button · Input · Textarea · Label · Select · Checkbox · Radio Group · Switch · Card · Badge · Alert · Dialog · Alert Dialog · Dropdown Menu · Popover · Tooltip · Toast (sonner) · Tabs · Table · Separator · Skeleton · Avatar · Sheet · Calendar · Date Picker · Pagination · Spinner · Empty · Field · Progress · Accordion · Scroll Area · Command · Combobox |
+| **Priority 2** | Sidebar · Breadcrumb |
 | **Later, if needed** | Carousel · Chart · Slider · Toggle Group · Hover Card · Navigation Menu · Context Menu · Input OTP · Resizable · Drawer · Collapsible · Kbd |
 | **Planned** | `registry:style` item (`extends: "none"`) that installs tokens + all components in one command |
