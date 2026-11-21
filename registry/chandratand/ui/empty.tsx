@@ -38,7 +38,7 @@ const emptyMediaVariants = cva(
     variants: {
       variant: {
         plain: "",
-        icon: "size-10 rounded-lg bg-muted text-foreground [&_svg]:size-icon-lg",
+        icon: "size-10 rounded-md bg-muted text-foreground [&_svg]:size-icon-lg",
       },
     },
     defaultVariants: {
@@ -76,7 +76,7 @@ function EmptyTitle({
   return (
     <Comp
       data-slot="empty-title"
-      className={cn("text-lg font-medium tracking-tight", className)}
+      className={cn("font-heading text-lg font-medium tracking-tight", className)}
       {...props}
     />
   );
