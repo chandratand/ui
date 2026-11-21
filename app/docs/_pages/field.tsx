@@ -8,7 +8,9 @@ import {
   FieldGroup,
   FieldLabel,
   FieldLegend,
+  FieldSeparator,
   FieldSet,
+  FieldTitle,
 } from "@/registry/chandratand/ui/field";
 import { Input } from "@/registry/chandratand/ui/input";
 import { Switch } from "@/registry/chandratand/ui/switch";
@@ -86,6 +88,50 @@ export function FieldDocs() {
             </FieldControl>
           </Field>
         </div>
+        <p className="text-muted-foreground">
+          <code className={code}>responsive</code> stacks while its{" "}
+          <code className={code}>FieldGroup</code> is narrow and goes horizontal from 28rem
+          (container width, not the viewport).
+        </p>
+        <FieldGroup className="max-w-xl">
+          <Field orientation="responsive">
+            <FieldContent>
+              <FieldLabel>Company name</FieldLabel>
+              <FieldDescription>Shown on every invoice.</FieldDescription>
+            </FieldContent>
+            <FieldControl>
+              <Input defaultValue="PT Maju Jaya" />
+            </FieldControl>
+          </Field>
+        </FieldGroup>
+      </DocsSection>
+
+      <DocsSection title="Title and separator">
+        <p className="text-muted-foreground">
+          <code className={code}>FieldTitle</code> styles a title like a label without being
+          one, e.g. in a choice card whose <code className={code}>FieldLabel</code> wraps the
+          control. <code className={code}>FieldSeparator</code> divides a FieldGroup, with
+          optional text.
+        </p>
+        <FieldGroup className="max-w-sm">
+          <FieldLabel
+            htmlFor="priority-support"
+            className="items-start gap-3 rounded-lg border border-border p-4"
+          >
+            <Checkbox id="priority-support" className="mt-0.5" />
+            <FieldContent>
+              <FieldTitle>Priority support</FieldTitle>
+              <FieldDescription>Replies within four working hours.</FieldDescription>
+            </FieldContent>
+          </FieldLabel>
+          <FieldSeparator>Or</FieldSeparator>
+          <Field>
+            <FieldLabel>Support email</FieldLabel>
+            <FieldControl>
+              <Input type="email" />
+            </FieldControl>
+          </Field>
+        </FieldGroup>
       </DocsSection>
 
       <DocsSection title="Sizes">
@@ -128,6 +174,55 @@ export function FieldDocs() {
             <FieldDescription>Assigned when the client is created.</FieldDescription>
           </Field>
         </div>
+        <p className="text-muted-foreground">
+          To mark a Field invalid yourself, e.g. after a server check whose message shows
+          elsewhere, pass <code className={code}>invalid</code> or shadcn&apos;s{" "}
+          <code className={code}>data-invalid</code>.
+        </p>
+        <div className="flex max-w-sm flex-col gap-6">
+          <Field invalid>
+            <FieldLabel>Tax ID</FieldLabel>
+            <FieldControl>
+              <Input defaultValue="01.234.567.8-901" />
+            </FieldControl>
+            <FieldDescription>Not found at the tax office. Check the number.</FieldDescription>
+          </Field>
+          <Field data-invalid>
+            <FieldLabel>VAT number</FieldLabel>
+            <FieldControl>
+              <Input defaultValue="NL0000" />
+            </FieldControl>
+            <FieldDescription>Too short for a Dutch VAT number.</FieldDescription>
+          </Field>
+        </div>
+      </DocsSection>
+
+      <DocsSection title="Your own ids and descriptions">
+        <p className="text-muted-foreground">
+          An <code className={code}>id</code> on the control is kept and used by the label. Its
+          own <code className={code}>aria-describedby</code> is added after the Field&apos;s
+          hints. A Field can hold more than one hint.
+        </p>
+        <div className="flex max-w-sm flex-col gap-6">
+          <Field>
+            <FieldLabel>Invoice prefix</FieldLabel>
+            <FieldControl>
+              <Input id="invoice-prefix" aria-describedby="invoice-prefix-example" />
+            </FieldControl>
+            <FieldDescription>Added before every invoice number.</FieldDescription>
+            <p id="invoice-prefix-example" className="font-mono text-sm text-muted-foreground">
+              Example: INV-2026-0042.
+            </p>
+          </Field>
+          <Field>
+            <FieldLabel>Passphrase</FieldLabel>
+            <FieldControl>
+              <Input type="text" autoComplete="new-password" />
+            </FieldControl>
+            <FieldDescription>At least 12 characters.</FieldDescription>
+            <FieldDescription>Do not reuse one from another site.</FieldDescription>
+          </Field>
+        </div>
       </DocsSection>
 
       <DocsSection title="Groups">
@@ -151,6 +246,32 @@ export function FieldDocs() {
           </FieldGroup>
           <FieldError>Choose at least one reminder.</FieldError>
         </FieldSet>
+      </DocsSection>
+
+      <DocsSection title="Without FieldControl">
+        <p className="text-muted-foreground">
+          shadcn&apos;s markup works as is: set <code className={code}>htmlFor</code>,{" "}
+          <code className={code}>id</code>, <code className={code}>aria-invalid</code> and{" "}
+          <code className={code}>aria-describedby</code> yourself, and{" "}
+          <code className={code}>data-invalid</code> on Field.
+        </p>
+        <div className="flex max-w-sm flex-col gap-6">
+          <Field data-invalid>
+            <FieldLabel htmlFor="billing-email">Billing email</FieldLabel>
+            <Input
+              id="billing-email"
+              type="email"
+              defaultValue="finance@"
+              aria-invalid
+              aria-describedby="billing-email-error"
+            />
+            <FieldError id="billing-email-error">Enter a valid email address.</FieldError>
+          </Field>
+          <Field>
+            <FieldLabel>Company size</FieldLabel>
+            <FieldDescription>A label with no control to point at stays unlinked.</FieldDescription>
+          </Field>
+        </div>
       </DocsSection>
 
       <DocsSection title="React Hook Form">

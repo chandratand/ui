@@ -765,7 +765,8 @@
       ],
       "registryDependencies": [
         "utils",
-        "chandratand/ui/label"
+        "chandratand/ui/label",
+        "chandratand/ui/separator"
       ],
       "files": [
         {
