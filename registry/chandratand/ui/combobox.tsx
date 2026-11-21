@@ -26,13 +26,13 @@ export interface ComboboxOption {
 // Button's outline variant reshaped to match SelectTrigger, so both sit in a form side by side.
 const comboboxTriggerVariants = cva(
   [
-    "w-full min-w-0 justify-between font-normal text-foreground",
+    "w-full min-w-0 justify-between px-3 font-normal text-foreground",
     "data-[placeholder]:text-muted-foreground aria-invalid:border-destructive",
     "[&>span]:truncate",
   ],
   {
     variants: {
-      size: { sm: "px-3", md: "px-3", lg: "px-4" },
+      size: { sm: "", md: "", lg: "px-4" },
     },
     defaultVariants: { size: "md" },
   },
@@ -90,7 +90,6 @@ function Combobox({
       <PopoverTrigger asChild>
         <Button
           data-slot="combobox-trigger"
-          data-size={size}
           data-placeholder={selected ? undefined : ""}
           variant="outline"
           size={size}
