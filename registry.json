@@ -702,6 +702,7 @@
       "description": "Page navigation landmark: current page, labelled previous/next, ellipsis. Sizes sm/md/lg. asChild for framework links.",
       "dependencies": [
         "radix-ui",
+        "class-variance-authority",
         "lucide-react"
       ],
       "registryDependencies": [

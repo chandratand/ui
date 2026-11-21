@@ -95,7 +95,7 @@ function ExamplePagination({ size }: { size?: "sm" | "md" | "lg" }) {
           </PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationEllipsis />
+          <PaginationEllipsis size={size} />
         </PaginationItem>
         <PaginationItem>
           <PaginationNext href="#next" size={size} />
