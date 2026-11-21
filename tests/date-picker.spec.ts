@@ -30,6 +30,18 @@ test("Date Picker is operable by keyboard and returns focus to its trigger", asy
   await expect(trigger).toHaveAccessibleName("Due date December 18th, 2026");
 });
 
+test("Date Picker arrow keys cross into the next month", async ({ page }) => {
+  await page.goto("/docs/date-picker");
+  await page.getByRole("button", { name: /^Due date/ }).click();
+
+  const dialog = page.getByRole("dialog");
+  await expect(dialog.getByRole("button", { name: /November 17, 2026/ })).toBeFocused();
+  await page.keyboard.press("ArrowDown");
+  await page.keyboard.press("ArrowDown");
+  await expect(dialog.getByRole("grid", { name: "December 2026" })).toBeVisible();
+  await expect(dialog.getByRole("button", { name: /December 1, 2026/ })).toBeFocused();
+});
+
 test("a controlled Date Picker shows the placeholder again when its value is cleared", async ({
   page,
 }) => {
