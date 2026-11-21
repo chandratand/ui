@@ -1,8 +1,9 @@
 import { expect, test } from "@playwright/test";
 
+import { gotoHydrated } from "./hydration";
+
 test("Accordion expands, collapses and moves between sections by keyboard", async ({ page }) => {
-  // Keys pressed before hydration are lost; network idle means the client bundle has run.
-  await page.goto("/docs/accordion", { waitUntil: "networkidle" });
+  await gotoHydrated(page, "/docs/accordion");
 
   const billing = page.getByRole("button", { name: "Can I change my billing plan?" });
   const refunds = page.getByRole("button", { name: "Do you offer refunds?" });
@@ -23,8 +24,7 @@ test("Accordion expands, collapses and moves between sections by keyboard", asyn
 
 test("Accordion opens and closes without animation under reduced motion", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  // Keys pressed before hydration are lost; network idle means the client bundle has run.
-  await page.goto("/docs/accordion", { waitUntil: "networkidle" });
+  await gotoHydrated(page, "/docs/accordion");
 
   const billing = page.getByRole("button", { name: "Can I change my billing plan?" });
   await billing.focus();
