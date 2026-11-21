@@ -55,8 +55,7 @@ function CommandDialog({
       <DialogContent
         className={cn("gap-0 overflow-hidden p-0", className)}
         showCloseButton={showCloseButton}
-        // Opened by a shortcut or a plain button, not a DialogTrigger, so Radix has nowhere to
-        // return focus on close: remember what had it.
+        // No DialogTrigger (opened by a shortcut), so remember what to return focus to.
         onOpenAutoFocus={() => {
           returnFocusRef.current = document.activeElement as HTMLElement | null;
         }}
@@ -82,13 +81,15 @@ function CommandInput({
   return (
     <div
       data-slot="command-input-wrapper"
-      className="flex h-control-md items-center gap-2 border-b border-border px-3"
+      // Padding leaves room for the input's offset focus ring inside the clipped Command.
+      className="flex items-center gap-2 border-b border-border px-3 py-1.5"
     >
       <Search aria-hidden className="size-icon-sm shrink-0 stroke-[1.5] text-muted-foreground" />
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
-          "flex h-full w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground",
+          "flex h-control-sm w-full rounded-md bg-transparent px-2 text-sm text-foreground placeholder:text-muted-foreground",
+          "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           "disabled:cursor-not-allowed disabled:opacity-50",
           className,
         )}
