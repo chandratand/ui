@@ -70,7 +70,7 @@ const fieldVariants = cva("group flex w-full gap-2", {
       vertical: "flex-col",
       horizontal: "flex-row items-start gap-3 [&>[role=checkbox]]:mt-0.5",
       responsive:
-        "flex-col @md/field-group:flex-row @md/field-group:items-start @md/field-group:gap-3 @md/field-group:*:data-[slot=field-label]:flex-auto @md/field-group:[&>[role=checkbox]]:mt-0.5",
+        "flex-col @md/field-group:flex-row @md/field-group:items-start @md/field-group:gap-3 @md/field-group:*:w-auto @md/field-group:*:data-[slot=field-label]:flex-auto @md/field-group:[&>[role=checkbox]]:mt-0.5",
     },
   },
   defaultVariants: { orientation: "vertical" },
@@ -208,7 +208,7 @@ function FieldDescription({ className, id, ...props }: React.ComponentProps<"p">
     <p
       data-slot="field-description"
       id={descriptionId}
-      className={cn("text-sm leading-normal text-muted-foreground", className)}
+      className={cn("text-sm font-normal leading-normal text-muted-foreground", className)}
       {...props}
     />
   );
