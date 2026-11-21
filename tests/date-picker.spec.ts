@@ -30,6 +30,21 @@ test("Date Picker is operable by keyboard and returns focus to its trigger", asy
   await expect(trigger).toHaveAccessibleName("Due date December 18th, 2026");
 });
 
+test("a controlled Date Picker shows the placeholder again when its value is cleared", async ({
+  page,
+}) => {
+  await page.goto("/docs/date-picker");
+  const trigger = page.getByRole("button", { name: /^Paid on/ });
+  await expect(trigger).toHaveAccessibleName("Paid on November 24th, 2026");
+
+  await trigger.click();
+  await page.getByRole("dialog").getByRole("button", { name: /November 20, 2026/ }).click();
+  await expect(trigger).toHaveAccessibleName("Paid on November 20th, 2026");
+
+  await page.getByRole("button", { name: "Clear" }).click();
+  await expect(trigger).toHaveAccessibleName("Paid on Pick a date");
+});
+
 test("Date Picker closes on Escape without selecting", async ({ page }) => {
   await page.goto("/docs/date-picker");
   const trigger = page.getByRole("button", { name: /^Due date/ });
