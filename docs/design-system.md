@@ -281,12 +281,24 @@ See `README.md`. In short: `shadcn add chandratand/ui/tokens`, then components; 
 
 ### 7.5 Done criteria for a change
 
-A change to a registry item (tokens or a component) is done when:
+A change to a registry item (tokens, a Component or a Block) is done when:
 
 - [ ] It is in `registry.json`.
 - [ ] It has its own docs page at `/docs/<name>`, checked in light and dark. Tokens have no item page; their docs are the Tokens section on `app/page.tsx`, which also links to every item page.
 - [ ] `pnpm lint`, `pnpm build`, `pnpm registry:build` and `pnpm test:e2e` pass (CI runs all four on every push and pull request, and fails if the committed registry output is stale). `test:e2e` fails when a Component or Block has no docs page or its page has a WCAG 2.2 AA violation in either Mode.
 - [ ] A `CHANGELOG.md` entry is written: dated, naming the affected items, and marked **Breaking** when a Consumer app re-pulling with `--overwrite` would need to change its own code or markup.
+- [ ] A Block also has a smoke test (7.6).
+
+### 7.6 New Block
+
+A Block is a composition of Components for one recurring screen (form in a sheet, login, data table). Unlike a Component, the Consumer app owns and edits it after install, so it is a known-good starting point, not an API to keep stable.
+
+1. Put its files in `registry/chandratand/blocks/<name>/components/`, each a `registry:component` file. No `registry:page`: pages are framework-specific, and the app places the Block itself.
+2. Same code rules as a Component (5.1): semantic utilities, no `next/*`, chandratand/ui Components imported from `@/registry/chandratand/ui/<name>`. Keep Block-only npm packages (e.g. TanStack Table) in the Block's `dependencies`, never in a Component's.
+3. Add a `registry:block` item to `registry.json` listing every chandratand/ui Component it uses as `chandratand/ui/<name>` in `registryDependencies`. Its docs page lists them under "Installs" on its own, from that list.
+4. Docs page: `app/docs/_pages/<name>.tsx` with a live preview and short usage, registered in `index.ts`.
+5. Smoke test: `tests/blocks/<name>.ts` exports a `BlockSmoke` that drives the preview by keyboard and roles through the Block's main flow, calling `expectNoAxeViolations` in states the page load does not show (an open Sheet, an error). Register it in `tests/blocks.spec.ts`, which fails for a Block without one and runs it in both Modes.
+6. Then 7.5.
 
 ## 8. Inventory
 
@@ -296,3 +308,8 @@ A change to a registry item (tokens or a component) is done when:
 | **Priority 2** | Sidebar · Breadcrumb |
 | **Later, if needed** | Carousel · Chart · Slider · Toggle Group · Hover Card · Navigation Menu · Context Menu · Input OTP · Resizable · Drawer · Collapsible · Kbd |
 | **Planned** | `registry:style` item (`extends: "none"`) that installs tokens + all components in one command |
+
+| Status | Blocks |
+| --- | --- |
+| **Done** | Form in Sheet (`form-sheet`) |
+| **Planned** | App shell · Data table · Login form |
