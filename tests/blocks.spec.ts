@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 import registry from "../registry.json" with { type: "json" };
+import { appShellSmoke } from "./blocks/app-shell";
 import { formSheetSmoke } from "./blocks/form-sheet";
 import type { BlockSmoke } from "./blocks/harness";
 import { gotoHydrated } from "./hydration";
@@ -10,6 +11,7 @@ import { gotoHydrated } from "./hydration";
  * suite: add `tests/blocks/<name>.ts` exporting a `BlockSmoke` and register it.
  */
 const smokeTests: Record<string, BlockSmoke> = {
+  "app-shell": appShellSmoke,
   "form-sheet": formSheetSmoke,
 };
 
@@ -38,6 +40,8 @@ for (const block of blocks) {
 
     for (const mode of ["Light", "Dark"] as const) {
       test(`its Components compose: keyboard smoke test in ${mode} mode`, async ({ page }) => {
+        // A smoke test walks a whole flow with several axe scans; on `next dev` that can pass 30s.
+        test.slow();
         const smoke = smokeTests[block.name];
         expect(smoke, `no smoke test registered for ${block.name} in tests/blocks.spec.ts`).toBeDefined();
         await gotoHydrated(page, url);
