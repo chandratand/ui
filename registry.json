@@ -717,6 +717,51 @@
       ]
     },
     {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "Primary app navigation down one side: collapses to icons or off canvas by keyboard, opens as a Sheet on small screens. Active item marked beyond colour. asChild for framework links.",
+      "dependencies": [
+        "radix-ui",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/button",
+        "chandratand/ui/input",
+        "chandratand/ui/separator",
+        "chandratand/ui/sheet",
+        "chandratand/ui/skeleton",
+        "chandratand/ui/tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Location trail as a navigation landmark: links up the hierarchy, the current page marked, optional ellipsis. asChild for framework links.",
+      "dependencies": [
+        "radix-ui",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
