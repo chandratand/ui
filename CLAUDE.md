@@ -17,9 +17,9 @@ Shared tokens + React components for every chandratand project (portfolio, SaaS)
 | `CHANGELOG.md` | Hand-written, dated entries per change, naming affected items; **Breaking** marked. Tells Consumer apps when to re-pull with `--overwrite`. No version tags or changesets. |
 | `.github/workflows/ci.yml` | CI: lint, build, registry build (+ stale-output check) on every push and PR. |
 | `registry.json` | Registry manifest. The `tokens` item is generated: change `tokens/*.css` and run `pnpm registry:build`. |
-| `app/` | Docs/demo site for this repo only (Next.js). Imports `tokens/*.css` directly. Not shipped. |
+| `app/` | Docs site for this repo only (Next.js). Imports `tokens/*.css` directly. Not shipped. `app/page.tsx` is the index: links to every item page, plus the Tokens. |
 | `app/docs/` | Per-item docs pages: `/docs/<name>`, one per Component and Block in `registry.json`. Page bodies in `app/docs/_pages/`, registered in its `index.ts`. |
-| `tests/` | Playwright suite over the docs pages: fails on an item without a page (unless on `pending-migration.ts`) and runs axe (WCAG 2.2 AA) in light and dark Mode. |
+| `tests/` | Playwright suite over the docs pages: fails on an item without a page and runs axe (WCAG 2.2 AA) in light and dark Mode, on every item page and the home index. |
 | `components.json` | shadcn CLI config for this repo (matches the official `registry-template`). Not shipped. |
 | `components/ui/` | Staging for shadcn originals while porting. Never committed; delete after the port. |
 

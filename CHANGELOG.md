@@ -8,6 +8,7 @@ No version tags or changesets: the date is the version.
 
 ## 2026-11-22
 
+- Docs site: every Component now has its own page at `/docs/<name>`: `input`, `textarea`, `label`, `select`, `checkbox`, `radio-group`, `switch`, `card`, `badge`, `alert`, `dialog`, `alert-dialog`, `dropdown-menu`, `popover`, `tooltip`, `sonner`, `tabs`, `table`, `separator`, `skeleton` and `avatar` moved over from the demo page. The home page is now an index of every Component and Block page, plus the Tokens. No registry item changed, so nothing to re-pull.
 - `accordion`: the trigger's focus ring has room around the header text and no longer covers the divider below it. Item height and text alignment are unchanged.
 
 ## 2026-11-17
