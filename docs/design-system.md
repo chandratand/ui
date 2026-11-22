@@ -295,7 +295,7 @@ A change to a registry item (tokens, a Component or a Block) is done when:
 A Block is a composition of Components for one recurring screen (form in a sheet, login, data table). Unlike a Component, the Consumer app owns and edits it after install, so it is a known-good starting point, not an API to keep stable.
 
 1. Put its files in `registry/chandratand/blocks/<name>/components/`, each a `registry:component` file. No `registry:page`: pages are framework-specific, and the app places the Block itself.
-2. Same code rules as a Component (5.1): semantic utilities, no `next/*`, chandratand/ui Components imported from `@/registry/chandratand/ui/<name>`. Keep Block-only npm packages (e.g. TanStack Table) in the Block's `dependencies`, never in a Component's.
+2. Same code rules as a Component (5.1): semantic utilities, no `next/*`, chandratand/ui Components imported from `@/registry/chandratand/ui/<name>`. Keep Block-only npm packages (e.g. TanStack Table) in the Block's `dependencies`, never in a Component's. One Block file importing another uses the same form, `@/registry/chandratand/blocks/<name>/components/<file>`: the CLI rewrites it to the Consumer's components alias, where the file lands.
 3. Add a `registry:block` item to `registry.json` listing every chandratand/ui Component it uses as `chandratand/ui/<name>` in `registryDependencies`. Its docs page lists them under "Installs" on its own, from that list.
 4. Docs page: `app/docs/_pages/<name>.tsx` with a live preview and short usage, registered in `index.ts`. A Block that fills the window (an app shell, a login page) gets a page of its own at `app/preview/<name>/page.tsx`, shown on the docs page in an `<iframe>` with a `title`: its landmarks stay top-level, and the Sidebar's phone layout follows the frame's width. The frame takes the Mode from the docs page through next-themes' storage sync.
 5. Smoke test: `tests/blocks/<name>.ts` exports a `BlockSmoke` that drives the preview by keyboard and roles through the Block's main flow, calling `expectNoAxeViolations` in states the page load does not show (an open Sheet, an error). Register it in `tests/blocks.spec.ts`, which fails for a Block without one and runs it in both Modes.
@@ -311,5 +311,5 @@ A Block is a composition of Components for one recurring screen (form in a sheet
 
 | Status | Blocks |
 | --- | --- |
-| **Done** | Form in Sheet (`form-sheet`) · App shell (`app-shell`) |
-| **Planned** | Data table · Login form |
+| **Done** | Form in Sheet (`form-sheet`) · App shell (`app-shell`) · Data table (`data-table`) |
+| **Planned** | Login form |
