@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import { AccordionDocs } from "./accordion";
 import { AlertDocs } from "./alert";
 import { AlertDialogDocs } from "./alert-dialog";
+import { AppShellDocs } from "./app-shell";
 import { AvatarDocs } from "./avatar";
 import { BadgeDocs } from "./badge";
 import { BreadcrumbDocs } from "./breadcrumb";
@@ -43,6 +44,7 @@ export const docsPages: Record<string, ComponentType> = {
   accordion: AccordionDocs,
   alert: AlertDocs,
   "alert-dialog": AlertDialogDocs,
+  "app-shell": AppShellDocs,
   avatar: AvatarDocs,
   badge: BadgeDocs,
   breadcrumb: BreadcrumbDocs,
