@@ -20,6 +20,7 @@ Shared tokens + React components for every chandratand project (portfolio, SaaS)
 | `registry.json` | Registry manifest. The `tokens` item is generated: change `tokens/*.css` and run `pnpm registry:build`. |
 | `app/` | Docs site for this repo only (Next.js). Imports `tokens/*.css` directly. Not shipped. `app/page.tsx` is the index: links to every item page, plus the Tokens. |
 | `app/docs/` | Per-item docs pages: `/docs/<name>`, one per Component and Block in `registry.json`. Page bodies in `app/docs/_pages/`, registered in its `index.ts`. |
+| `app/preview/<name>/` | Full-page preview of a Block that fills the window (app shell), shown on its docs page in an iframe. Docs only, not shipped. How: design-system doc §7.6. |
 | `tests/` | Playwright suite over the docs pages: fails on an item without a page and runs axe (WCAG 2.2 AA) in light and dark Mode, on every item page and the home index. `blocks.spec.ts` runs each Block's smoke test (`tests/blocks/<name>.ts`) in both Modes and fails for a Block without one. |
 | `components.json` | shadcn CLI config for this repo (matches the official `registry-template`). Not shipped. |
 | `components/ui/` | Staging for shadcn originals while porting. Never committed; delete after the port. |
