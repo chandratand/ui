@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb",
+  "title": "Breadcrumb",
+  "description": "Location trail as a navigation landmark: links up the hierarchy, the current page marked, optional ellipsis. asChild for framework links.",
+  "dependencies": [
+    "radix-ui",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/chandratand/ui/breadcrumb.tsx",
+      "content": "import * as React from \"react\";\nimport { Slot } from \"radix-ui\";\nimport { ChevronRight, MoreHorizontal } from \"lucide-react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * Location trail from the app's root to the current page, above the page title. Use it when\n * pages nest more than one level deep; for steps in a flow, use Tabs or a stepper instead.\n */\nfunction Breadcrumb({ \"aria-label\": ariaLabel = \"Breadcrumb\", ...props }: React.ComponentProps<\"nav\">) {\n  return <nav data-slot=\"breadcrumb\" aria-label={ariaLabel} {...props} />;\n}\n\nfunction BreadcrumbList({ className, ...props }: React.ComponentProps<\"ol\">) {\n  return (\n    <ol\n      data-slot=\"breadcrumb-list\"\n      className={cn(\n        \"flex flex-wrap items-center gap-1.5 text-sm break-words text-muted-foreground sm:gap-2\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction BreadcrumbItem({ className, ...props }: React.ComponentProps<\"li\">) {\n  return (\n    <li\n      data-slot=\"breadcrumb-item\"\n      className={cn(\"inline-flex items-center gap-1.5\", className)}\n      {...props}\n    />\n  );\n}\n\ninterface BreadcrumbLinkProps extends React.ComponentProps<\"a\"> {\n  /** Render the child element instead of an <a> (e.g. a framework <Link>). */\n  asChild?: boolean;\n}\n\nfunction BreadcrumbLink({ asChild = false, className, ...props }: BreadcrumbLinkProps) {\n  const Comp = asChild ? Slot.Root : \"a\";\n  return (\n    <Comp\n      data-slot=\"breadcrumb-link\"\n      className={cn(\n        \"rounded-sm underline-offset-4 transition-colors duration-(--duration-fast) ease-standard hover:text-foreground hover:underline\",\n        \"outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\n/** The last item: the page you are on. Plain text, not a link, announced as the current page. */\nfunction BreadcrumbPage({ className, ...props }: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      data-slot=\"breadcrumb-page\"\n      aria-current=\"page\"\n      className={cn(\"font-medium text-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction BreadcrumbSeparator({ children, className, ...props }: React.ComponentProps<\"li\">) {\n  return (\n    <li\n      data-slot=\"breadcrumb-separator\"\n      role=\"presentation\"\n      aria-hidden\n      className={cn(\"[&>svg]:size-icon-sm [&>svg]:stroke-[1.5]\", className)}\n      {...props}\n    >\n      {children ?? <ChevronRight />}\n    </li>\n  );\n}\n\n/**\n * Stands for collapsed levels in a long trail. To reveal them, wrap it in a DropdownMenuTrigger\n * button with its own `aria-label`.\n */\nfunction BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      data-slot=\"breadcrumb-ellipsis\"\n      className={cn(\"flex size-icon-lg items-center justify-center\", className)}\n      {...props}\n    >\n      <MoreHorizontal aria-hidden className=\"size-icon-sm stroke-[1.5]\" />\n      <span className=\"sr-only\">More levels</span>\n    </span>\n  );\n}\n\nexport {\n  Breadcrumb,\n  BreadcrumbEllipsis,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbList,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
