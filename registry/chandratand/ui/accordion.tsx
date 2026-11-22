@@ -40,11 +40,13 @@ function AccordionTrigger({
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
   return (
-    <AccordionPrimitive.Header data-slot="accordion-header" className="flex">
+    // Header padding + trigger's negative margin leave room for the ring's 2px offset, so it
+    // neither hugs the text nor covers the item's divider; the text stays aligned with content.
+    <AccordionPrimitive.Header data-slot="accordion-header" className="flex py-1.5">
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium",
+          "group/accordion-trigger flex flex-1 items-start justify-between gap-4 rounded-md -mx-2 px-2 py-2.5 text-left text-sm font-medium",
           "transition-colors duration-(--duration-fast) ease-standard hover:underline underline-offset-4",
           "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           "disabled:pointer-events-none disabled:opacity-50",
