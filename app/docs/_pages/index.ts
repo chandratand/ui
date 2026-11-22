@@ -1,32 +1,74 @@
 import type { ComponentType } from "react";
 
+import { AccordionDocs } from "./accordion";
+import { AlertDocs } from "./alert";
+import { AlertDialogDocs } from "./alert-dialog";
+import { AvatarDocs } from "./avatar";
+import { BadgeDocs } from "./badge";
 import { ButtonDocs } from "./button";
 import { CalendarDocs } from "./calendar";
-import { DatePickerDocs } from "./date-picker";
-import { FieldDocs } from "./field";
-import { ProgressDocs } from "./progress";
-import { AccordionDocs } from "./accordion";
-import { ScrollAreaDocs } from "./scroll-area";
-import { SheetDocs } from "./sheet";
-import { EmptyDocs } from "./empty";
-import { PaginationDocs } from "./pagination";
-import { SpinnerDocs } from "./spinner";
+import { CardDocs } from "./card";
+import { CheckboxDocs } from "./checkbox";
 import { ComboboxDocs } from "./combobox";
 import { CommandDocs } from "./command";
+import { DatePickerDocs } from "./date-picker";
+import { DialogDocs } from "./dialog";
+import { DropdownMenuDocs } from "./dropdown-menu";
+import { EmptyDocs } from "./empty";
+import { FieldDocs } from "./field";
+import { InputDocs } from "./input";
+import { LabelDocs } from "./label";
+import { PaginationDocs } from "./pagination";
+import { PopoverDocs } from "./popover";
+import { ProgressDocs } from "./progress";
+import { RadioGroupDocs } from "./radio-group";
+import { ScrollAreaDocs } from "./scroll-area";
+import { SelectDocs } from "./select";
+import { SeparatorDocs } from "./separator";
+import { SheetDocs } from "./sheet";
+import { SkeletonDocs } from "./skeleton";
+import { SonnerDocs } from "./sonner";
+import { SpinnerDocs } from "./spinner";
+import { SwitchDocs } from "./switch";
+import { TableDocs } from "./table";
+import { TabsDocs } from "./tabs";
+import { TextareaDocs } from "./textarea";
+import { TooltipDocs } from "./tooltip";
 
-/** Docs page body per registry item name. Items missing here 404 until they are migrated. */
+/** Docs page body per registry item name. An item missing here 404s and fails the suite. */
 export const docsPages: Record<string, ComponentType> = {
+  accordion: AccordionDocs,
+  alert: AlertDocs,
+  "alert-dialog": AlertDialogDocs,
+  avatar: AvatarDocs,
+  badge: BadgeDocs,
   button: ButtonDocs,
   calendar: CalendarDocs,
-  "date-picker": DatePickerDocs,
-  field: FieldDocs,
-  progress: ProgressDocs,
-  accordion: AccordionDocs,
-  "scroll-area": ScrollAreaDocs,
-  sheet: SheetDocs,
-  pagination: PaginationDocs,
-  spinner: SpinnerDocs,
-  empty: EmptyDocs,
-  command: CommandDocs,
+  card: CardDocs,
+  checkbox: CheckboxDocs,
   combobox: ComboboxDocs,
+  command: CommandDocs,
+  "date-picker": DatePickerDocs,
+  dialog: DialogDocs,
+  "dropdown-menu": DropdownMenuDocs,
+  empty: EmptyDocs,
+  field: FieldDocs,
+  input: InputDocs,
+  label: LabelDocs,
+  pagination: PaginationDocs,
+  popover: PopoverDocs,
+  progress: ProgressDocs,
+  "radio-group": RadioGroupDocs,
+  "scroll-area": ScrollAreaDocs,
+  select: SelectDocs,
+  separator: SeparatorDocs,
+  sheet: SheetDocs,
+  skeleton: SkeletonDocs,
+  sonner: SonnerDocs,
+  spinner: SpinnerDocs,
+  switch: SwitchDocs,
+  table: TableDocs,
+  tabs: TabsDocs,
+  textarea: TextareaDocs,
+  tooltip: TooltipDocs,
 };

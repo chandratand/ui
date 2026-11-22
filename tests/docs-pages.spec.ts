@@ -2,7 +2,6 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 import registry from "../registry.json" with { type: "json" };
-import { pendingMigration } from "./pending-migration";
 
 // Read from registry.json directly, not app/docs/manifest.ts, so a bug there cannot hide an item.
 const documentedTypes = new Set(["registry:ui", "registry:block"]);
@@ -11,18 +10,6 @@ const wcag22aa = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
 for (const item of items) {
   const url = `/docs/${item.name}`;
-
-  if (pendingMigration.includes(item.name)) {
-    test(`${item.title} is still pending migration`, async ({ page }) => {
-      await page.goto(url);
-      // Forces the list to shrink as items migrate, so it cannot outlive the migration.
-      await expect(
-        page.getByRole("heading", { level: 1, name: "Page not found" }),
-        `${item.name} has a docs page: remove it from pendingMigration`,
-      ).toBeVisible();
-    });
-    continue;
-  }
 
   test.describe(item.title, () => {
     // Asserted by content, not status: with partial prerendering an unlisted param streams
