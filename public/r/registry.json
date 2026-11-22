@@ -872,6 +872,28 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "form-sheet",
+      "type": "registry:block",
+      "title": "Form in Sheet",
+      "description": "Add/edit form in a side Sheet: labelled Fields with hints, errors announced on their field, focus on the first invalid one; closes on a valid save. No form library.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "chandratand/ui/button",
+        "chandratand/ui/field",
+        "chandratand/ui/input",
+        "chandratand/ui/sheet",
+        "chandratand/ui/textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/blocks/form-sheet/components/client-form-sheet.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
