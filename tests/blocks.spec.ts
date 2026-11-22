@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 import registry from "../registry.json" with { type: "json" };
 import { appShellSmoke } from "./blocks/app-shell";
+import { dataTableSmoke } from "./blocks/data-table";
 import { formSheetSmoke } from "./blocks/form-sheet";
 import type { BlockSmoke } from "./blocks/harness";
 import { gotoHydrated } from "./hydration";
@@ -12,6 +13,7 @@ import { gotoHydrated } from "./hydration";
  */
 const smokeTests: Record<string, BlockSmoke> = {
   "app-shell": appShellSmoke,
+  "data-table": dataTableSmoke,
   "form-sheet": formSheetSmoke,
 };
 
