@@ -16,6 +16,7 @@ import { DialogDocs } from "./dialog";
 import { DropdownMenuDocs } from "./dropdown-menu";
 import { EmptyDocs } from "./empty";
 import { FieldDocs } from "./field";
+import { FormSheetDocs } from "./form-sheet";
 import { InputDocs } from "./input";
 import { LabelDocs } from "./label";
 import { PaginationDocs } from "./pagination";
@@ -53,6 +54,7 @@ export const docsPages: Record<string, ComponentType> = {
   "dropdown-menu": DropdownMenuDocs,
   empty: EmptyDocs,
   field: FieldDocs,
+  "form-sheet": FormSheetDocs,
   input: InputDocs,
   label: LabelDocs,
   pagination: PaginationDocs,

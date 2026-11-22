@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 import { ThemeControls } from "@/app/theme-controls";
 import { Skeleton } from "@/registry/chandratand/ui/skeleton";
-import { findDocsPage, publishedDocsItems } from "../manifest";
+import { findDocsPage, installedComponents, publishedDocsItems } from "../manifest";
 
 type Params = PageProps<"/docs/[name]">["params"];
 
@@ -50,8 +50,38 @@ async function ItemDocs({ params }: { params: Params }) {
           <code>npx shadcn add chandratand/ui/{item.name}</code>
         </pre>
       </section>
+      {item.type === "registry:block" && <InstalledComponents name={item.name} />}
       <Body />
     </>
+  );
+}
+
+function InstalledComponents({ name }: { name: string }) {
+  const components = installedComponents(name);
+  return (
+    <section aria-labelledby="installs" className="flex flex-col gap-4">
+      <h2 id="installs" className="text-2xl font-semibold">
+        Installs
+      </h2>
+      <p className="text-muted-foreground">
+        The command above also installs these Components. The Block is yours to change; the
+        Components are re-pulled from chandratand/ui, never edited in the app.
+      </p>
+      <nav aria-label="Components installed">
+        <ul className="flex flex-wrap gap-x-6 gap-y-2">
+          {components.map((component) => (
+            <li key={component.name}>
+              <Link
+                href={`/docs/${component.name}`}
+                className="rounded-sm font-medium underline-offset-4 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                {component.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </section>
   );
 }
 
