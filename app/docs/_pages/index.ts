@@ -5,6 +5,7 @@ import { AlertDocs } from "./alert";
 import { AlertDialogDocs } from "./alert-dialog";
 import { AvatarDocs } from "./avatar";
 import { BadgeDocs } from "./badge";
+import { BreadcrumbDocs } from "./breadcrumb";
 import { ButtonDocs } from "./button";
 import { CalendarDocs } from "./calendar";
 import { CardDocs } from "./card";
@@ -27,6 +28,7 @@ import { ScrollAreaDocs } from "./scroll-area";
 import { SelectDocs } from "./select";
 import { SeparatorDocs } from "./separator";
 import { SheetDocs } from "./sheet";
+import { SidebarDocs } from "./sidebar";
 import { SkeletonDocs } from "./skeleton";
 import { SonnerDocs } from "./sonner";
 import { SpinnerDocs } from "./spinner";
@@ -43,6 +45,7 @@ export const docsPages: Record<string, ComponentType> = {
   "alert-dialog": AlertDialogDocs,
   avatar: AvatarDocs,
   badge: BadgeDocs,
+  breadcrumb: BreadcrumbDocs,
   button: ButtonDocs,
   calendar: CalendarDocs,
   card: CardDocs,
@@ -65,6 +68,7 @@ export const docsPages: Record<string, ComponentType> = {
   select: SelectDocs,
   separator: SeparatorDocs,
   sheet: SheetDocs,
+  sidebar: SidebarDocs,
   skeleton: SkeletonDocs,
   sonner: SonnerDocs,
   spinner: SpinnerDocs,
