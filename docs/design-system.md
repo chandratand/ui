@@ -182,6 +182,7 @@ Exceptions:
 
 - **Spinner** uses `motion-reduce:animate-none`: an endless spin has no duration to collapse.
 - **Sheet** slides in from its own edge: that shows where the panel came from, and it moves only its own width, not across the screen.
+- **Sidebar** slides off canvas to its own edge, or narrows to its icons, for the same reason and with the same `--duration-slow`.
 
 ### 4.8 Icons
 
@@ -304,8 +305,7 @@ A Block is a composition of Components for one recurring screen (form in a sheet
 
 | Status | Components |
 | --- | --- |
-| **Done** | tokens · Button · Input · Textarea · Label · Select · Checkbox · Radio Group · Switch · Card · Badge · Alert · Dialog · Alert Dialog · Dropdown Menu · Popover · Tooltip · Toast (sonner) · Tabs · Table · Separator · Skeleton · Avatar · Sheet · Calendar · Date Picker · Pagination · Spinner · Empty · Field · Progress · Accordion · Scroll Area · Command · Combobox |
-| **Priority 2** | Sidebar · Breadcrumb |
+| **Done** | tokens · Button · Input · Textarea · Label · Select · Checkbox · Radio Group · Switch · Card · Badge · Alert · Dialog · Alert Dialog · Dropdown Menu · Popover · Tooltip · Toast (sonner) · Tabs · Table · Separator · Skeleton · Avatar · Sheet · Calendar · Date Picker · Pagination · Spinner · Empty · Field · Progress · Accordion · Scroll Area · Command · Combobox · Sidebar · Breadcrumb |
 | **Later, if needed** | Carousel · Chart · Slider · Toggle Group · Hover Card · Navigation Menu · Context Menu · Input OTP · Resizable · Drawer · Collapsible · Kbd |
 | **Planned** | `registry:style` item (`extends: "none"`) that installs tokens + all components in one command |
 
