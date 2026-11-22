@@ -25,7 +25,8 @@ export function ScrollAreaDocs() {
         <p className="text-muted-foreground">
           Name the area with <code className="font-mono text-sm">aria-label</code>: it becomes a
           focusable region, so the arrow keys, Page Up/Down, Home and End scroll it even though it
-          holds only text.
+          holds only text. Always give it a name: without one the area is still a tab stop, but a
+          screen reader announces nothing when it gets focus.
         </p>
         <ScrollArea aria-label="Release notes" className="h-48 max-w-sm border border-border">
           <ul className="flex flex-col gap-3 p-4 text-sm">
