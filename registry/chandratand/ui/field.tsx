@@ -7,49 +7,61 @@ import { CircleAlert } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Label } from "@/registry/chandratand/ui/label";
+import { Separator } from "@/registry/chandratand/ui/separator";
+
+type Register = (id: string) => () => void;
 
 type FieldContextValue = {
-  controlId: string;
-  descriptionId: string;
-  errorId: string;
+  controlId: string | undefined;
   describedBy: string | undefined;
   invalid: boolean;
   disabled: boolean;
-  setHasDescription: (value: boolean) => void;
-  setHasError: (value: boolean) => void;
+  registerControl: Register;
+  registerDescription: Register;
+  registerError: Register;
 };
 
 const FieldContext = React.createContext<FieldContextValue | null>(null);
 
-function useFieldState(disabled: boolean): FieldContextValue {
-  const id = React.useId();
-  const [hasDescription, setHasDescription] = React.useState(false);
-  const [hasError, setHasError] = React.useState(false);
-  const descriptionId = `${id}-description`;
-  const errorId = `${id}-error`;
-  const describedBy = [hasDescription && descriptionId, hasError && errorId]
-    .filter(Boolean)
-    .join(" ");
+function useIdList(): [string[], Register] {
+  const [ids, setIds] = React.useState<string[]>([]);
+  const register = React.useCallback<Register>((id) => {
+    setIds((current) => [...current, id]);
+    return () => setIds((current) => current.filter((each) => each !== id));
+  }, []);
+  return [ids, register];
+}
+
+function joinIds(...lists: Array<string | undefined>) {
+  const ids = new Set(lists.flatMap((list) => list?.split(/\s+/).filter(Boolean) ?? []));
+  return ids.size > 0 ? [...ids].join(" ") : undefined;
+}
+
+function useFieldState(disabled: boolean, invalid: boolean): FieldContextValue {
+  const [controlIds, registerControl] = useIdList();
+  const [descriptionIds, registerDescription] = useIdList();
+  const [errorIds, registerError] = useIdList();
   return {
-    controlId: `${id}-control`,
-    descriptionId,
-    errorId,
-    describedBy: describedBy || undefined,
-    invalid: hasError,
+    controlId: controlIds[0],
+    describedBy: joinIds(...descriptionIds, ...errorIds),
+    invalid: invalid || errorIds.length > 0,
     disabled,
-    setHasDescription,
-    setHasError,
+    registerControl,
+    registerDescription,
+    registerError,
   };
 }
 
-// Description and error register themselves so `aria-describedby` only ever points at
-// elements that exist.
-function useRegister(setter: ((value: boolean) => void) | undefined, active: boolean) {
-  React.useLayoutEffect(() => {
-    if (!setter || !active) return;
-    setter(true);
-    return () => setter(false);
-  }, [setter, active]);
+// Parts register once mounted, so `for` and `aria-describedby` never point at a missing id.
+function useRegister(register: Register | undefined, id: string, active = true) {
+  React.useLayoutEffect(
+    () => (register && active ? register(id) : undefined),
+    [register, id, active],
+  );
+}
+
+function isSet(flag: boolean | "true" | "false" | undefined) {
+  return flag === true || flag === "true";
 }
 
 const fieldVariants = cva("group flex w-full gap-2", {
@@ -57,6 +69,8 @@ const fieldVariants = cva("group flex w-full gap-2", {
     orientation: {
       vertical: "flex-col",
       horizontal: "flex-row items-start gap-3 [&>[role=checkbox]]:mt-0.5",
+      responsive:
+        "flex-col @md/field-group:flex-row @md/field-group:items-start @md/field-group:gap-3 @md/field-group:*:w-auto @md/field-group:*:data-[slot=field-label]:flex-auto @md/field-group:[&>[role=checkbox]]:mt-0.5",
     },
   },
   defaultVariants: { orientation: "vertical" },
@@ -67,16 +81,28 @@ export interface FieldProps
     VariantProps<typeof fieldVariants> {
   /** Disables the control and dims its label. */
   disabled?: boolean;
+  /** Marks the control invalid when the error shows elsewhere. A rendered `FieldError` does this on its own. */
+  invalid?: boolean;
+  /** shadcn's way to mark a Field invalid; same as `invalid`. */
+  "data-invalid"?: boolean | "true" | "false";
 }
 
 /**
  * One form control with its label, hint and error. Wrap the control in `<FieldControl>` and
  * it is labelled by `<FieldLabel>`, described by `<FieldDescription>` and `<FieldError>`, and
  * marked `aria-invalid` while an error shows. Works with any form library or none.
- * For several controls that share one name (checkbox or radio sets) use `<FieldSet>`.
+ * `orientation="responsive"` stacks inside a narrow `<FieldGroup>` and goes horizontal when it
+ * is wide. For several controls that share one name (checkbox or radio sets) use `<FieldSet>`.
  */
-function Field({ className, orientation, disabled = false, ...props }: FieldProps) {
-  const field = useFieldState(disabled);
+function Field({
+  className,
+  orientation,
+  disabled = false,
+  invalid = false,
+  "data-invalid": dataInvalid,
+  ...props
+}: FieldProps) {
+  const field = useFieldState(disabled, invalid || isSet(dataInvalid));
   return (
     <FieldContext.Provider value={field}>
       <div
@@ -92,7 +118,10 @@ function Field({ className, orientation, disabled = false, ...props }: FieldProp
   );
 }
 
-/** The control's visible name, pointed at the `<FieldControl>` of the same Field. */
+/**
+ * The control's visible name. Inside a Field with a `<FieldControl>` it points at that control;
+ * otherwise pass `htmlFor` yourself, as in shadcn.
+ */
 function FieldLabel({ className, ...props }: React.ComponentProps<typeof Label>) {
   const field = React.useContext(FieldContext);
   return (
@@ -106,21 +135,55 @@ function FieldLabel({ className, ...props }: React.ComponentProps<typeof Label>)
 }
 
 /**
- * Wraps the one control of a Field (Input, Textarea, Select trigger, Checkbox, Switch) and
- * gives it the id, `aria-describedby`, `aria-invalid` and `disabled` that tie it to the
- * Field. Do not set `id` on the control yourself: the label would lose it.
+ * A title that is not a `<label>`, e.g. the heading of a choice card whose `<FieldLabel>`
+ * wraps a whole Field.
  */
-function FieldControl(props: React.ComponentProps<typeof Slot.Root>) {
-  const field = React.useContext(FieldContext);
+function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <Slot.Root
-      id={field?.controlId}
-      aria-describedby={field?.describedBy}
-      aria-invalid={field?.invalid || undefined}
-      // Slot's props are typed for any HTMLElement, which has no `disabled`; the control does.
-      {...(field?.disabled ? { disabled: true } : {})}
+    <div
+      data-slot="field-label"
+      className={cn(
+        "flex w-fit items-center gap-2 text-sm font-medium leading-snug text-foreground",
+        "group-data-[disabled=true]:opacity-50",
+        className,
+      )}
       {...props}
     />
+  );
+}
+
+type ControlProps = Pick<
+  React.HTMLAttributes<HTMLElement>,
+  "id" | "aria-describedby" | "aria-invalid"
+>;
+
+/**
+ * Wraps the one control of a Field (Input, Textarea, Select trigger, Checkbox, Switch) and
+ * gives it the id, `aria-describedby`, `aria-invalid` and `disabled` that tie it to the
+ * Field. An `id` on the control is kept and used by the label; its own `aria-describedby` is
+ * added to the Field's. The label and hint links attach on hydration; `invalid` renders on
+ * the server.
+ */
+function FieldControl({ children, ...props }: React.ComponentProps<typeof Slot.Root>) {
+  const field = React.useContext(FieldContext);
+  const generatedId = React.useId();
+  const child = React.isValidElement<ControlProps>(children) ? children : null;
+  const id = child?.props.id ?? props.id ?? generatedId;
+  useRegister(field?.registerControl, id);
+  const wired: ControlProps = {
+    id,
+    "aria-describedby": joinIds(
+      field?.describedBy,
+      props["aria-describedby"],
+      child?.props["aria-describedby"],
+    ),
+    "aria-invalid": child?.props["aria-invalid"] ?? props["aria-invalid"] ?? (field?.invalid || undefined),
+  };
+  return (
+    // Slot's props are typed for any HTMLElement, which has no `disabled`; the control does.
+    <Slot.Root {...(field?.disabled ? { disabled: true } : {})} {...props} {...wired}>
+      {child ? React.cloneElement(child, wired) : children}
+    </Slot.Root>
   );
 }
 
@@ -136,14 +199,16 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 /** Hint text for the control or set. Sentence case; one or two short sentences. */
-function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
+function FieldDescription({ className, id, ...props }: React.ComponentProps<"p">) {
   const field = React.useContext(FieldContext);
-  useRegister(field?.setHasDescription, true);
+  const generatedId = React.useId();
+  const descriptionId = id ?? generatedId;
+  useRegister(field?.registerDescription, descriptionId);
   return (
     <p
       data-slot="field-description"
-      id={field?.descriptionId}
-      className={cn("text-sm leading-normal text-muted-foreground", className)}
+      id={descriptionId}
+      className={cn("text-sm font-normal leading-normal text-muted-foreground", className)}
       {...props}
     />
   );
@@ -158,8 +223,10 @@ export interface FieldErrorProps extends React.ComponentProps<"div"> {
  * The error message, with an icon so it is not colour alone. Renders nothing without a
  * message, so it can stay in the markup; while it renders, the control is invalid.
  */
-function FieldError({ className, children, errors, ...props }: FieldErrorProps) {
+function FieldError({ className, children, errors, id, ...props }: FieldErrorProps) {
   const field = React.useContext(FieldContext);
+  const generatedId = React.useId();
+  const errorId = id ?? generatedId;
   const messages = [...new Set(errors?.map((error) => error?.message).filter(Boolean))];
   const content =
     children ??
@@ -173,14 +240,14 @@ function FieldError({ className, children, errors, ...props }: FieldErrorProps) 
       messages[0]
     ));
   const hasContent = content !== undefined && content !== null && content !== "";
-  useRegister(field?.setHasError, hasContent);
+  useRegister(field?.registerError, errorId, hasContent);
   if (!hasContent) return null;
 
   return (
     <div
       role="alert"
       data-slot="field-error"
-      id={field?.errorId}
+      id={errorId}
       className={cn("flex items-start gap-1.5 text-sm text-destructive", className)}
       {...props}
     >
@@ -195,7 +262,7 @@ function FieldError({ className, children, errors, ...props }: FieldErrorProps) 
  * `<FieldLegend>`; a `<FieldDescription>` or `<FieldError>` directly inside describes the set.
  */
 function FieldSet({ className, disabled, ...props }: React.ComponentProps<"fieldset">) {
-  const field = useFieldState(!!disabled);
+  const field = useFieldState(!!disabled, false);
   return (
     <FieldContext.Provider value={field}>
       <fieldset
@@ -235,10 +302,36 @@ function FieldLegend({ className, variant, ...props }: FieldLegendProps) {
   );
 }
 
-/** Stacks Fields with the form's vertical rhythm. */
+/** Stacks Fields with the form's vertical rhythm; its width drives `orientation="responsive"`. */
 function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div data-slot="field-group" className={cn("flex flex-col gap-6", className)} {...props} />
+    <div
+      data-slot="field-group"
+      className={cn("@container/field-group flex w-full flex-col gap-6", className)}
+      {...props}
+    />
+  );
+}
+
+/** Divides sections of a FieldGroup, optionally with a short text such as "Or". */
+function FieldSeparator({ children, className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="field-separator"
+      data-content={!!children}
+      className={cn("relative h-5 text-sm", className)}
+      {...props}
+    >
+      <Separator className="absolute inset-x-0 top-1/2" />
+      {children && (
+        <span
+          data-slot="field-separator-content"
+          className="relative mx-auto block w-fit bg-background px-2 text-muted-foreground"
+        >
+          {children}
+        </span>
+      )}
+    </div>
   );
 }
 
@@ -251,7 +344,9 @@ export {
   FieldGroup,
   FieldLabel,
   FieldLegend,
+  FieldSeparator,
   FieldSet,
+  FieldTitle,
   fieldLegendVariants,
   fieldVariants,
 };

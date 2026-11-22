@@ -1,10 +1,11 @@
 import { expect, test } from "@playwright/test";
 
+import { gotoHydrated } from "./hydration";
+
 test("Scroll Area without focusable content can be focused and scrolled by keyboard", async ({
   page,
 }) => {
-  // Keys pressed before hydration are lost; network idle means the client bundle has run.
-  await page.goto("/docs/scroll-area", { waitUntil: "networkidle" });
+  await gotoHydrated(page, "/docs/scroll-area");
 
   const notes = page.getByRole("region", { name: "Release notes" });
   const lastNote = notes.getByText("v1.0.0: first release.");
@@ -20,7 +21,7 @@ test("Scroll Area without focusable content can be focused and scrolled by keybo
 });
 
 test("Scroll Area brings focused content into view", async ({ page }) => {
-  await page.goto("/docs/scroll-area", { waitUntil: "networkidle" });
+  await gotoHydrated(page, "/docs/scroll-area");
 
   const lastTag = page.getByRole("link", { name: "v0.1.0" });
   await expect(lastTag).not.toBeInViewport();

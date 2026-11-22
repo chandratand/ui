@@ -3,6 +3,7 @@
 import * as React from "react";
 import { id } from "react-day-picker/locale";
 
+import { Button } from "@/registry/chandratand/ui/button";
 import { DatePicker } from "@/registry/chandratand/ui/date-picker";
 import { Label } from "@/registry/chandratand/ui/label";
 import { DocsSection } from "./section";
@@ -27,6 +28,7 @@ function LabelledDatePicker({
 
 export function DatePickerDocs() {
   const [due, setDue] = React.useState<Date>();
+  const [paid, setPaid] = React.useState<Date | undefined>(new Date(2026, 10, 24));
 
   return (
     <>
@@ -37,6 +39,24 @@ export function DatePickerDocs() {
           selects and returns focus to the field. Escape closes without a change.
         </p>
         <LabelledDatePicker id="due-date" label="Due date" value={due} onValueChange={setDue} />
+      </DocsSection>
+
+      <DocsSection title="Controlled">
+        <p className="text-muted-foreground">
+          Pass <code className={code}>value</code> and <code className={code}>onValueChange</code>{" "}
+          to own the date, e.g. to clear it from outside.
+        </p>
+        <div className="flex items-end gap-2">
+          <LabelledDatePicker
+            id="paid-on"
+            label="Paid on"
+            value={paid}
+            onValueChange={setPaid}
+          />
+          <Button variant="ghost" onClick={() => setPaid(undefined)} disabled={!paid}>
+            Clear
+          </Button>
+        </div>
       </DocsSection>
 
       <DocsSection title="Indonesian locale">

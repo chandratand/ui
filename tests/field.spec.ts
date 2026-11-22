@@ -56,3 +56,50 @@ test("the react-hook-form example shows, announces and clears a validation error
   await expect(name).not.toHaveAttribute("aria-invalid", "true");
   await expect(name).toHaveAccessibleDescription("As it appears on invoices.");
 });
+
+test("shadcn-style markup without FieldControl labels the control by its own id", async ({
+  page,
+}) => {
+  const email = page.getByRole("textbox", { name: "Billing email" });
+  await expect(email).toHaveAttribute("aria-invalid", "true");
+  await expect(email).toHaveAccessibleDescription("Enter a valid email address.");
+});
+
+test("a control keeps its own id and adds its own description to the Field's", async ({
+  page,
+}) => {
+  const prefix = page.getByRole("textbox", { name: "Invoice prefix" });
+  await expect(prefix).toHaveAccessibleDescription(
+    "Added before every invoice number. Example: INV-2026-0042.",
+  );
+});
+
+test("a Field set invalid by the app marks its control invalid", async ({ page }) => {
+  await expect(page.getByRole("textbox", { name: "Tax ID" })).toHaveAttribute(
+    "aria-invalid",
+    "true",
+  );
+  await expect(page.getByRole("textbox", { name: "VAT number" })).toHaveAttribute(
+    "aria-invalid",
+    "true",
+  );
+});
+
+test("a control is described by every hint in its Field", async ({ page }) => {
+  await expect(page.getByRole("textbox", { name: "Passphrase" })).toHaveAccessibleDescription(
+    "At least 12 characters. Do not reuse one from another site.",
+  );
+});
+
+test("a choice card names its checkbox by the card's title", async ({ page }) => {
+  await expect(page.getByRole("checkbox", { name: /^Priority support/ })).toBeVisible();
+});
+
+test("every label points at a control that exists", async ({ page }) => {
+  const dangling = await page.evaluate(() =>
+    [...document.querySelectorAll("label[for]")]
+      .map((label) => label.getAttribute("for")!)
+      .filter((id) => !document.getElementById(id)),
+  );
+  expect(dangling).toEqual([]);
+});

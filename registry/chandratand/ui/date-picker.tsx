@@ -57,7 +57,7 @@ function DatePicker({
   const selected = value !== undefined ? value : uncontrolled;
 
   function handleSelect(date: Date | undefined) {
-    setUncontrolled(date);
+    if (value === undefined) setUncontrolled(date);
     onValueChange?.(date);
     setOpen(false);
   }

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Slot } from "radix-ui";
+import { cva } from "class-variance-authority";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -7,11 +8,31 @@ import { buttonVariants } from "@/registry/chandratand/ui/button";
 
 type PaginationSize = "sm" | "md" | "lg";
 
-const minWidth: Record<PaginationSize, string> = {
-  sm: "min-w-control-sm",
-  md: "min-w-control-md",
-  lg: "min-w-control-lg",
-};
+// Height comes from buttonVariants; the min width keeps one-digit pages square.
+const paginationSizeVariants = cva("", {
+  variants: {
+    size: {
+      sm: "min-w-control-sm",
+      md: "min-w-control-md",
+      lg: "min-w-control-lg",
+    },
+  },
+  defaultVariants: { size: "md" },
+});
+
+const paginationEllipsisVariants = cva(
+  "flex items-center justify-center text-muted-foreground [&_svg]:size-icon-sm [&_svg]:stroke-[1.5]",
+  {
+    variants: {
+      size: {
+        sm: "size-control-sm",
+        md: "size-control-md",
+        lg: "size-control-lg [&_svg]:size-icon-lg",
+      },
+    },
+    defaultVariants: { size: "md" },
+  },
+);
 
 /**
  * Page navigation for long lists that load a page at a time. Use it when the URL (or state)
@@ -65,7 +86,7 @@ function PaginationLink({
       aria-current={isActive ? "page" : undefined}
       className={cn(
         buttonVariants({ variant: isActive ? "outline" : "ghost", size }),
-        minWidth[size],
+        paginationSizeVariants({ size }),
         "px-2 aria-disabled:pointer-events-none aria-disabled:opacity-50",
         className,
       )}
@@ -108,14 +129,16 @@ function PaginationNext(props: PaginationLinkProps) {
   return <PaginationStep direction="next" data-slot="pagination-next" {...props} />;
 }
 
-function PaginationEllipsis({ className, ...props }: React.ComponentProps<"span">) {
+/** Stands for skipped pages. Give it the same `size` as the links around it. */
+function PaginationEllipsis({
+  className,
+  size = "md",
+  ...props
+}: React.ComponentProps<"span"> & { size?: PaginationSize }) {
   return (
     <span
       data-slot="pagination-ellipsis"
-      className={cn(
-        "flex size-control-md items-center justify-center text-muted-foreground [&_svg]:size-icon-sm [&_svg]:stroke-[1.5]",
-        className,
-      )}
+      className={cn(paginationEllipsisVariants({ size }), className)}
       {...props}
     >
       <MoreHorizontal aria-hidden />
@@ -132,4 +155,5 @@ export {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
+  paginationEllipsisVariants,
 };
