@@ -939,6 +939,26 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "app-shell",
+      "type": "registry:block",
+      "title": "App shell",
+      "description": "A Consumer app's frame: Sidebar navigation that collapses to icons, a header with the Breadcrumb, and the main content behind a skip link. The Sidebar opens as a Sheet on phones.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "chandratand/ui/breadcrumb",
+        "chandratand/ui/separator",
+        "chandratand/ui/sidebar"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/blocks/app-shell/components/app-shell.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
