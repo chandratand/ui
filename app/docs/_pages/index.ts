@@ -13,6 +13,7 @@ import { CardDocs } from "./card";
 import { CheckboxDocs } from "./checkbox";
 import { ComboboxDocs } from "./combobox";
 import { CommandDocs } from "./command";
+import { DataTableDocs } from "./data-table";
 import { DatePickerDocs } from "./date-picker";
 import { DialogDocs } from "./dialog";
 import { DropdownMenuDocs } from "./dropdown-menu";
@@ -54,6 +55,7 @@ export const docsPages: Record<string, ComponentType> = {
   checkbox: CheckboxDocs,
   combobox: ComboboxDocs,
   command: CommandDocs,
+  "data-table": DataTableDocs,
   "date-picker": DatePickerDocs,
   dialog: DialogDocs,
   "dropdown-menu": DropdownMenuDocs,
