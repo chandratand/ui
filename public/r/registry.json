@@ -959,6 +959,38 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:block",
+      "title": "Data table",
+      "description": "A list of records on TanStack Table: search, a Combobox filter, Pagination, a row actions menu, and loading and empty states that are announced.",
+      "dependencies": [
+        "@tanstack/react-table",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "chandratand/ui/badge",
+        "chandratand/ui/button",
+        "chandratand/ui/combobox",
+        "chandratand/ui/dropdown-menu",
+        "chandratand/ui/empty",
+        "chandratand/ui/input",
+        "chandratand/ui/label",
+        "chandratand/ui/pagination",
+        "chandratand/ui/spinner",
+        "chandratand/ui/table"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/blocks/data-table/components/data-table.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/chandratand/blocks/data-table/components/invoice-columns.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
