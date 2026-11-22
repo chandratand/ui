@@ -28,6 +28,8 @@ test.describe("Sidebar", () => {
     const trigger = preview.getByRole("button", { name: "Toggle sidebar" });
     await trigger.click();
     await expect(trigger).toHaveAttribute("aria-expanded", "false");
+    // It leaves the tab order when the slide-out ends, not on the click.
+    await expect(preview.getByRole("navigation", { name: "Main" })).toBeHidden();
 
     // The trigger is the first control after the sidebar, so Shift+Tab leaves the preview.
     await page.keyboard.press("Shift+Tab");
