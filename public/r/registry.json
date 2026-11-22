@@ -413,6 +413,27 @@
       ]
     },
     {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Side panel from any edge for secondary content and forms. Dialog semantics, overlay scrim, shadow-lg, widths sm/md/lg.",
+      "dependencies": [
+        "radix-ui",
+        "class-variance-authority",
+        "lucide-react",
+        "tw-animate-css"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "alert-dialog",
       "type": "registry:ui",
       "title": "Alert Dialog",
@@ -628,6 +649,226 @@
       "files": [
         {
           "path": "registry/chandratand/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "Month grid for picking a day or a range, on react-day-picker. Localized through the locale prop.",
+      "dependencies": [
+        "react-day-picker",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/button"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Single-date field: a trigger that opens a Calendar in a Popover. locale and displayFormat props, trigger sizes sm/md/lg.",
+      "dependencies": [
+        "date-fns",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/button",
+        "chandratand/ui/calendar",
+        "chandratand/ui/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/date-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Page navigation landmark: current page, labelled previous/next, ellipsis. Sizes sm/md/lg. asChild for framework links.",
+      "dependencies": [
+        "radix-ui",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/button"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Indeterminate loading status. Sizes sm/md/lg; stops spinning under reduced motion.",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "Empty state: media, title, description and an optional next action. Says why in text, not colour.",
+      "dependencies": [
+        "radix-ui",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Label, hint and error wired to their control with aria-describedby and aria-invalid. Works with any form library or none.",
+      "dependencies": [
+        "radix-ui",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/label",
+        "chandratand/ui/separator"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Determinate progress bar with an accessible name and value; motion stops under reduced motion.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Collapsible sections, single or multiple open. Keyboard per WAI-ARIA; height animation stops under reduced motion.",
+      "dependencies": [
+        "radix-ui",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "Scrollable region with consistent thin scrollbars. Named areas are focusable regions, so keyboard users can scroll them.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Searchable list filtered as you type (cmdk). Inline, as a command palette in a dialog, or inside Combobox.",
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/dialog"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Search and pick one value from a long list. Command in a Popover; trigger matches Select (sizes sm/md/lg).",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils",
+        "chandratand/ui/button",
+        "chandratand/ui/command",
+        "chandratand/ui/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/ui/combobox.tsx",
           "type": "registry:ui"
         }
       ]

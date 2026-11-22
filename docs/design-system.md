@@ -178,6 +178,11 @@ Rule of thumb: the inner element is never rounder than its container.
 
 Always write durations as `duration-(--duration-*)` plus `ease-standard`. Under `prefers-reduced-motion` the durations become 0, so every transition and animation switches off with no extra code. Overlays use `tw-animate-css` classes (`animate-in fade-in-0 zoom-in-95`) which read the same duration. Motion is subtle: fades and a 95% zoom, no bounces or slides across the screen.
 
+Exceptions:
+
+- **Spinner** uses `motion-reduce:animate-none`: an endless spin has no duration to collapse.
+- **Sheet** slides in from its own edge: that shows where the panel came from, and it moves only its own width, not across the screen.
+
 ### 4.8 Icons
 
 - **lucide-react** only.
@@ -287,7 +292,7 @@ A change to a registry item (tokens or a component) is done when:
 
 | Status | Components |
 | --- | --- |
-| **Done** | tokens · Button · Input · Textarea · Label · Select · Checkbox · Radio Group · Switch · Card · Badge · Alert · Dialog · Alert Dialog · Dropdown Menu · Popover · Tooltip · Toast (sonner) · Tabs · Table · Separator · Skeleton · Avatar |
-| **Priority 2** | Sheet · Sidebar · Breadcrumb · Pagination · Command / Combobox · Field · Progress · Spinner · Empty · Accordion · Scroll Area · Date Picker |
+| **Done** | tokens · Button · Input · Textarea · Label · Select · Checkbox · Radio Group · Switch · Card · Badge · Alert · Dialog · Alert Dialog · Dropdown Menu · Popover · Tooltip · Toast (sonner) · Tabs · Table · Separator · Skeleton · Avatar · Sheet · Calendar · Date Picker · Pagination · Spinner · Empty · Field · Progress · Accordion · Scroll Area · Command · Combobox |
+| **Priority 2** | Sidebar · Breadcrumb |
 | **Later, if needed** | Carousel · Chart · Slider · Toggle Group · Hover Card · Navigation Menu · Context Menu · Input OTP · Resizable · Drawer · Collapsible · Kbd |
 | **Planned** | `registry:style` item (`extends: "none"`) that installs tokens + all components in one command |

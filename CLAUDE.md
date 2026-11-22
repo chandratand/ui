@@ -47,7 +47,7 @@ pnpm (version pinned in `package.json` → `packageManager`). Consumer-facing do
 
 `pnpm registry:build` runs `tokens/*.css` → `registry.json` tokens item, then `shadcn build` → `public/r/*.json`.
 
-`pnpm test:e2e` runs the Playwright suite (starts `next dev` on port 3100, or reuses one; in CI it serves the build). First run locally: `pnpm exec playwright install chromium`. Tests assert roles, names, focus and axe results only, never class names or DOM structure.
+`pnpm test:e2e` runs the Playwright suite (starts `next dev` on port 3100, or reuses one; in CI it serves the build). First run locally: `pnpm exec playwright install chromium`. Tests assert roles, names, focus and axe results only (plus computed animation state, for reduced-motion criteria), never class names or DOM structure.
 
 ## Open decisions (revisit when the SaaS starts)
 

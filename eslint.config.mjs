@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     "test-results/**",
     "playwright-report/**",
+    // Claude Code agent worktrees: full repo copies that would be linted twice.
+    ".claude/**",
   ]),
 ]);
 
