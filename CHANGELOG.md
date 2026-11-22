@@ -6,6 +6,10 @@ What changed in chandratand/ui, newest first. Each entry is dated and names the 
 
 No version tags or changesets: the date is the version.
 
+## 2026-11-22
+
+- `accordion`: the trigger's focus ring has room around the header text and no longer covers the divider below it. Item height and text alignment are unchanged.
+
 ## 2026-11-17
 
 - `field`: added `FieldTitle`, `FieldSeparator` (installs `chandratand/ui/separator`) and `orientation="responsive"` (set by the width of its `FieldGroup`), matching shadcn. Mark a Field invalid with `invalid` or `data-invalid`. shadcn markup with `htmlFor`/`id` works without `FieldControl`; `FieldLabel` only sets `htmlFor` itself when a `FieldControl` is present. A control's own `id` and `aria-describedby` are kept, and several descriptions or errors in one Field no longer share an id. `pagination`: `PaginationEllipsis` takes `size` like the links. `command`: `CommandInput` shows the standard focus ring.
