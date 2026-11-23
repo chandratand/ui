@@ -45,7 +45,7 @@ Requires Tailwind CSS v4. The components are built on Radix, so the app must be 
 
 3. Theming is the app's job: put `.dark` on `<html>` for dark mode (e.g. `next-themes` with `attribute="class"`). Load your fonts and set `--font-sans` / `--font-mono` on `html`.
 
-Never edit chandratand/ui components inside an app. Fix them here, then pull again with `npx shadcn add … --overwrite`. [`CHANGELOG.md`](CHANGELOG.md) says what changed and when a re-pull needs changes on your side (**Breaking**).
+Never edit chandratand/ui components inside an app. Fix them here, then pull again with `npx shadcn add … --overwrite`. [`CHANGELOG.md`](CHANGELOG.md) says what changed and when a re-pull needs changes on your side (**Breaking**). Note the date you last pulled and read the entries after it.
 
 ## Develop
 

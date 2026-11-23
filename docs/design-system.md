@@ -296,7 +296,7 @@ A change to a registry item (tokens, a Component or a Block) is done when:
 - [ ] It is in `registry.json`.
 - [ ] It has its own docs page at `/docs/<name>`, checked in light and dark. Tokens and the Style have no item page; their docs are the Tokens and Style sections on `app/page.tsx`, which also links to every item page.
 - [ ] `pnpm lint`, `pnpm build`, `pnpm registry:build` and `pnpm test:e2e` pass (CI runs all four on every push and pull request, and fails if the committed registry output is stale). `test:e2e` fails when a Component or Block has no docs page or its page has a WCAG 2.2 AA violation in either Mode.
-- [ ] A `CHANGELOG.md` entry is written: dated, naming the affected items, and marked **Breaking** when a Consumer app re-pulling with `--overwrite` would need to change its own code or markup.
+- [ ] A `CHANGELOG.md` entry is written: dated and naming the affected items. Until the first Consumer app installs, one line per item is enough. From then on, mark it **Breaking** when a Consumer app re-pulling with `--overwrite` would need to change its own code or markup.
 - [ ] A Block also has a smoke test (7.6).
 
 ### 7.6 New Block

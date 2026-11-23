@@ -16,7 +16,7 @@ Shared tokens + React components for every chandratand project (portfolio, SaaS)
 | `scripts/style-to-registry.mjs` | Generates the `style` item (`registry:style`, `extends: "none"`): Tokens + every `registry:ui` item, no Blocks. |
 | `registry/chandratand/ui/*.tsx` | Component source — what the registry ships. |
 | `registry/chandratand/blocks/<name>/` | Block source (`registry:block`): Components composed into one screen pattern. The app owns it after install. Workflow in the design-system doc §7.6. |
-| `CHANGELOG.md` | Hand-written, dated entries per change, naming affected items; **Breaking** marked. Tells Consumer apps when to re-pull with `--overwrite`. No version tags or changesets. |
+| `CHANGELOG.md` | Hand-written, dated entries per change, naming affected items; **Breaking** marked once a Consumer app exists. Tells Consumer apps when to re-pull with `--overwrite`. `main` is the release: no version tags or changesets. |
 | `.github/workflows/ci.yml` | CI: lint, build, registry build (+ stale-output check) on every push and PR. |
 | `registry.json` | Registry manifest. The `tokens` and `style` items are generated: change `tokens/*.css` (or add a Component) and run `pnpm registry:build`. |
 | `app/` | Docs site for this repo only (Next.js). Imports `tokens/*.css` directly. Not shipped. `app/page.tsx` is the index: links to every item page, plus the Style and Tokens sections. |
