@@ -77,7 +77,7 @@ To add a Brand, add a block to `tokens/tokens.css` that overrides **only** the b
 
 Everything else (neutrals, status colours, radius, sizes, motion) is shared by every Brand. Then run `pnpm registry:build` and add a Brand toggle to the theme controls on the docs site so it can be checked. A Brand that would be identical to the default is not added.
 
-`tokens/theme.css` is the Tailwind v4 bridge that turns the variables into utilities. `scripts/tokens-to-registry.mjs` turns both files into the `tokens` registry item; never edit that item by hand.
+`tokens/theme.css` is the Tailwind v4 bridge that turns the variables into utilities. `scripts/tokens-to-registry.mjs` turns both files into the `tokens` registry item; never edit that item by hand. `scripts/style-to-registry.mjs` then writes the `style` item from the Components in `registry.json`, so a new Component joins the Style without a manual step.
 
 ## 4. Foundations
 
@@ -287,14 +287,14 @@ Same as 7.1 from step 2, starting from the closest existing chandratand/ui compo
 
 ### 7.4 Use chandratand/ui in an app
 
-See `README.md`. In short: `shadcn add chandratand/ui/tokens`, then components; the app sets `.dark` (and `data-brand` if a Brand other than the default exists) and loads fonts; components are never edited in the app.
+See `README.md`. In short: `shadcn add chandratand/ui/style` (tokens + every Component; or `tokens`, then components one by one), then each Block the app needs; the app sets `.dark` (and `data-brand` if a Brand other than the default exists) and loads fonts; components are never edited in the app.
 
 ### 7.5 Done criteria for a change
 
 A change to a registry item (tokens, a Component or a Block) is done when:
 
 - [ ] It is in `registry.json`.
-- [ ] It has its own docs page at `/docs/<name>`, checked in light and dark. Tokens have no item page; their docs are the Tokens section on `app/page.tsx`, which also links to every item page.
+- [ ] It has its own docs page at `/docs/<name>`, checked in light and dark. Tokens and the Style have no item page; their docs are the Tokens and Style sections on `app/page.tsx`, which also links to every item page.
 - [ ] `pnpm lint`, `pnpm build`, `pnpm registry:build` and `pnpm test:e2e` pass (CI runs all four on every push and pull request, and fails if the committed registry output is stale). `test:e2e` fails when a Component or Block has no docs page or its page has a WCAG 2.2 AA violation in either Mode.
 - [ ] A `CHANGELOG.md` entry is written: dated, naming the affected items, and marked **Breaking** when a Consumer app re-pulling with `--overwrite` would need to change its own code or markup.
 - [ ] A Block also has a smoke test (7.6).
@@ -314,9 +314,8 @@ A Block is a composition of Components for one recurring screen (form in a sheet
 
 | Status | Components |
 | --- | --- |
-| **Done** | tokens · Button · Input · Textarea · Label · Select · Checkbox · Radio Group · Switch · Card · Badge · Alert · Dialog · Alert Dialog · Dropdown Menu · Popover · Tooltip · Toast (sonner) · Tabs · Table · Separator · Skeleton · Avatar · Sheet · Calendar · Date Picker · Pagination · Spinner · Empty · Field · Progress · Accordion · Scroll Area · Command · Combobox · Sidebar · Breadcrumb |
+| **Done** | Style (`style`: tokens + every Component, no Blocks) · tokens · Button · Input · Textarea · Label · Select · Checkbox · Radio Group · Switch · Card · Badge · Alert · Dialog · Alert Dialog · Dropdown Menu · Popover · Tooltip · Toast (sonner) · Tabs · Table · Separator · Skeleton · Avatar · Sheet · Calendar · Date Picker · Pagination · Spinner · Empty · Field · Progress · Accordion · Scroll Area · Command · Combobox · Sidebar · Breadcrumb |
 | **Later, if needed** | Carousel · Chart · Slider · Toggle Group · Hover Card · Navigation Menu · Context Menu · Input OTP · Resizable · Drawer · Collapsible · Kbd |
-| **Planned** | `registry:style` item (`extends: "none"`) that installs tokens + all components in one command |
 
 | Status | Blocks |
 | --- | --- |

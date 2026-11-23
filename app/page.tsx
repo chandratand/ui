@@ -36,6 +36,20 @@ export default function Home() {
         <ThemeControls />
       </header>
 
+      <Section id="style" title="Style">
+        <p className="max-w-2xl text-muted-foreground">
+          Bootstrap a Consumer app with one command: it installs the Tokens and every Component.
+        </p>
+        <pre className="w-fit rounded-md border border-border bg-muted px-3 py-2 font-mono text-sm">
+          <code>npx shadcn add chandratand/ui/style</code>
+        </pre>
+        <p className="max-w-2xl text-muted-foreground">
+          Blocks are not included: the app owns and edits a Block after install, so add each one on
+          its own from its docs page, e.g.{" "}
+          <code className="font-mono text-sm">npx shadcn add chandratand/ui/login-form</code>.
+        </p>
+      </Section>
+
       {indexGroups.map(({ type, title }) => {
         const items = byTitle.filter((item) => item.type === type);
         if (items.length === 0) return null;
