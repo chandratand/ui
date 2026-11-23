@@ -16,7 +16,7 @@ const releaseNotes = [
 const tags = Array.from({ length: 12 }, (_, index) => `v0.${12 - index}.0`);
 
 const linkClass =
-  "rounded-sm text-sm text-primary underline-offset-4 hover:underline outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+  "rounded-sm text-sm text-link underline-offset-4 hover:underline outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export function ScrollAreaDocs() {
   return (

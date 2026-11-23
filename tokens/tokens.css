@@ -95,15 +95,16 @@
   --secondary: var(--brand-100);
   --secondary-foreground: var(--brand-800);
   --muted: var(--brand-100);
-  --muted-foreground: var(--brand-600);
+  --muted-foreground: var(--brand-700);       /* brand-600 is 4.23:1 on accent */
   --accent: var(--brand-200);
   --accent-foreground: var(--brand-800);
   --border: var(--brand-200);
-  --input: var(--brand-200);
+  --input: var(--brand-200);                  /* EXPERIMENT: below 3:1 by choice, matches the portfolio */
   --ring: var(--brand-500);
+  --link: var(--brand-600);
   --overlay: oklch(0 0 0 / 0.5);               /* dialog/sheet scrim */
 
-  --success: oklch(0.6 0.145 152);
+  --success: oklch(0.52 0.14 152);            /* 4.8:1 on success-bg */
   --success-foreground: oklch(0.985 0.01 152);
   --success-bg: oklch(0.970 0.022 150);
   --success-border: oklch(0.870 0.060 150);
@@ -111,7 +112,7 @@
   --warning-foreground: #ffffff;
   --warning-bg: oklch(0.970 0.022 75);
   --warning-border: oklch(0.870 0.060 75);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.55 0.22 27.325);     /* 4.9:1 on destructive-bg */
   --destructive-foreground: oklch(0.985 0.01 17);
   --destructive-bg: oklch(0.970 0.022 27);
   --destructive-border: oklch(0.870 0.060 27);
@@ -148,8 +149,9 @@
   --accent: var(--neutral-800);
   --accent-foreground: var(--neutral-100);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --input: oklch(1 0 0 / 15%);                 /* EXPERIMENT: below 3:1 by choice, matches the portfolio */
   --ring: var(--brand-500);
+  --link: var(--brand-400);                    /* primary brand-600 is 3.35:1 as text here */
   --overlay: oklch(0 0 0 / 0.7);               /* dialog/sheet scrim */
 
   --success: oklch(0.72 0.17 152);
