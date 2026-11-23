@@ -40,7 +40,7 @@ Not every component has to start from shadcn. A component shadcn doesn't have is
 **Calm, precise, trustworthy.** The products handle money and business data. The UI should feel like a well-made instrument, not a marketing page.
 
 1. **Borders before shadows.** Surfaces are separated by 1px borders. Shadows are reserved for things that float above the page (menus, toasts, dialogs). Fewer shadows means the ones that exist carry meaning.
-2. **Square-ish.** Small radii (2–6px). Nothing pill-shaped except avatars, switches and radio buttons.
+2. **Square-ish.** Small radii (4–8px). Nothing pill-shaped except avatars, switches and radio buttons.
 3. **Meaning over decoration.** Colour is used for state (primary action, success, error), not for decoration. Status is never colour alone.
 4. **Density is a choice, not an accident.** Three control sizes and two table densities, so a data-heavy screen and a touch screen use the same components.
 5. **Accessible by default.** WCAG 2.2 AA is built into the components, so an app gets it without thinking.
@@ -51,7 +51,7 @@ Not every component has to start from shadcn. A component shadcn doesn't have is
 ```
 primitives          semantic tokens            components
 --brand-600   →     --primary            →     bg-primary
---neutral-200 →     --border             →     border-border
+--brand-200   →     --border             →     border-border
 ```
 
 1. **Primitives**: raw ramps (`--brand-50…950`, `--neutral-50…950`), spacing, radius, sizes, motion. Never used directly by components.
@@ -83,25 +83,27 @@ Everything else (neutrals, status colours, radius, sizes, motion) is shared by e
 
 ### 4.1 Colour
 
-**Brand ramp.** Hue 247.3 (a calm steel blue), anchored at `#326897` = `brand-600`. Defined in OKLCH so steps are perceptually even.
+**Brand ramp.** The portfolio's venice-blue, hue ~243–251, anchored at `#326897` = `brand-600`. Defined in OKLCH. In light Mode the brand ramp also supplies the quiet fills, borders and text, so the whole page leans blue.
 
-**Neutral ramp.** Slightly tinted toward the brand hue so greys don't look dead next to blue.
+**Neutral ramp.** Achromatic (chroma 0), as in the portfolio's dark Mode. Dark Mode surfaces and text come from it.
 
 **Semantic tokens** (light → dark):
 
 | Token | Use | Light | Dark |
 | --- | --- | --- | --- |
-| `background` / `foreground` | Page, body text | neutral-50 / neutral-950 | neutral-950 / neutral-50 |
+| `background` / `foreground` | Page, body text | off-white tinted blue / brand-950 | neutral-950 / neutral-100 |
 | `card`, `popover` (+ `-foreground`) | Raised surfaces, form controls | white | neutral-900 |
-| `primary` (+ `-foreground`, `-hover`, `-active`) | Main action, links, selection | brand-600 | brand-500 (hover 400, active 300) |
-| `secondary`, `muted`, `accent` | Quiet fills, hover backgrounds | neutral-100 | neutral-800 |
-| `muted-foreground` | Secondary text | 4.98:1 on muted | neutral-400 |
-| `border` | **Decorative** dividers and surface edges | neutral-200 | neutral-800 |
-| `input` | **Form control** borders (must be ≥ 3:1) | 3.64:1 | 3.62:1 |
-| `ring` | Focus ring | brand-500 | brand-400 |
+| `primary` (+ `-foreground`, `-hover`, `-active`) | Main action, selection | brand-600 on brand-50 (hover 700, active 800) | brand-600 on brand-50 (hover 500, active 400) |
+| `secondary`, `muted` | Quiet fills | brand-100 | neutral grey 0.245 |
+| `accent` | Hover and selected backgrounds | brand-200 | neutral-800 |
+| `muted-foreground` | Secondary text | brand-700 (5.5:1 on accent) | neutral-400 |
+| `border` | **Decorative** dividers and surface edges | brand-200 | white 10% |
+| `input` | **Form control** borders (below 3:1 by choice, see below) | brand-200 | white 15% |
+| `ring` | Focus ring | brand-500 | brand-500 |
+| `link` | Link text (Button `link`, inline links); separate from `primary` so dark mode can keep a deeper primary fill | brand-600 | brand-400 |
 | `overlay` | Scrim behind dialogs and sheets | black 50% | black 70% |
 
-`border` vs `input` matters: `border` is allowed to be faint because it's decoration. `input` marks where a control is, so it must meet the 3:1 non-text contrast rule.
+`border` vs `input` matters: `border` is allowed to be faint because it's decoration. `input` marks where a control is, so WCAG asks for 3:1. **Experiment exception:** this branch keeps the portfolio's faint input border (about 1.3:1 light, 1.5:1 dark) because it looks better, so `tests/tokens.spec.ts` no longer checks `input`. The focus ring still meets 3:1.
 
 **Surfaces get lighter as they rise, in both Modes.** The page (`background`) is the darkest surface; `card` and `popover` sit on it and are lighter. That is why the light page is off-white rather than white: a white card on a white page is held apart by its border alone. In dark Mode, near-black rather than black does the same job, since shadows don't show on black. So in a component:
 
@@ -110,7 +112,7 @@ Everything else (neutrals, status colours, radius, sizes, motion) is shared by e
 - `bg-card` for cards and for filled controls (inputs, selects, checkboxes, radios, the outline button, the active segmented tab), so a field is white whether it sits on the page or in a card.
 - Nothing that has to match the surface behind it (a fill that masks a line, say): it breaks on the other surface. `FieldSeparator` draws two lines either side of its text for this reason.
 
-**Pure white and black stay where they are.** `-foreground` on light-Mode solid fills is white because off-white costs contrast (warning drops from 4.96:1 to 4.76:1). The `overlay` scrim is neutral black, as in Material 3. Body text is never `#000` (neutral-950). The research behind this: [`docs/research/pure-black-and-white.md`](research/pure-black-and-white.md).
+**Pure white and black stay where they are.** `-foreground` on the warning and info fills is white because off-white costs contrast (warning drops from 4.96:1 to 4.76:1). Primary, success and destructive take the portfolio's near-white tints, which still pass 4.5:1. The `overlay` scrim is neutral black, as in Material 3. Body text is never `#000` (neutral-950). The research behind this: [`docs/research/pure-black-and-white.md`](research/pure-black-and-white.md).
 
 **Status colours.** Four statuses, each with the same four tokens:
 
@@ -132,8 +134,8 @@ Everything else (neutrals, status colours, radius, sizes, motion) is shared by e
 
 | Token | Default | Use |
 | --- | --- | --- |
-| `--font-sans` | Geist | Everything |
-| `--font-heading` | = `--font-sans` | Headings, dialog/card titles (`font-heading`) |
+| `--font-sans` | Inter | Everything |
+| `--font-heading` | Montserrat | Headings, dialog/card titles (`font-heading`) |
 | `--font-mono` | Geist Mono | IDs, codes, keyboard shortcuts |
 
 The app loads the font files and may override these variables; components only reference the tokens. The type scale is Tailwind's default (`text-xs`…`text-5xl`). Components mostly use `text-sm` (14px), `text-xs` for meta/labels, `text-base` in `lg` size controls. Use `tabular-nums` for amounts and numbers in tables.
@@ -148,10 +150,12 @@ Copy: sentence case, no trailing colons on labels, mark optional fields "(option
 
 | Utility | Value | Use |
 | --- | --- | --- |
-| `rounded-sm` | 2px | Badges, checkboxes, tab triggers |
-| `rounded-md` | 4px | Inputs, buttons, menu items, tooltips |
-| `rounded-lg` | 6px | Cards, dialogs, popovers, menus, alerts, toasts |
-| `rounded-xl` | 8px | Large marketing panels only |
+| `rounded-sm` | 4px | Badges, checkboxes, tab triggers |
+| `rounded-md` | 6px | Inputs, buttons, menu items, tooltips |
+| `rounded-lg` | 8px | Cards, dialogs, popovers, menus, alerts, toasts |
+| `rounded-xl` | 12px | Large marketing panels only |
+
+The scale is shadcn's, derived from `--radius: 0.5rem` as the portfolio uses it.
 | `rounded-full` | — | Avatars, switches, radio buttons only |
 
 Rule of thumb: the inner element is never rounder than its container.
@@ -161,8 +165,8 @@ Rule of thumb: the inner element is never rounder than its container.
 | Token | Value | Utility | Use |
 | --- | --- | --- | --- |
 | `--control-sm` | 32px | `h-control-sm` | Dense screens (ERP tables, toolbars) |
-| `--control-md` | 36px | `h-control-md` | **Default** |
-| `--control-lg` | 44px | `h-control-lg` | Touch / kiosk (meets the 44px touch target) |
+| `--control-md` | 40px | `h-control-md` | **Default** |
+| `--control-lg` | 48px | `h-control-lg` | Touch / kiosk (meets the 44px touch target) |
 | `--row-comfortable` | 40px | `h-row-comfortable` | Default table rows |
 | `--row-compact` | 32px | `h-row-compact` | Dense tables |
 | `--icon-sm` | 16px | `size-icon-sm` | Icons in sm/md controls and text |
@@ -236,7 +240,7 @@ Exceptions:
 Target: **WCAG 2.2 AA**.
 
 - Text ≥ **4.5:1** against its background (large text ≥ 3:1).
-- Form control borders, focus rings and meaningful icons ≥ **3:1**. That's why `--input` exists separately from `--border`.
+- Form control borders, focus rings and meaningful icons ≥ **3:1**. That's why `--input` exists separately from `--border`. (On this experiment branch `--input` is knowingly below it; see 4.1.)
 - Focus is always visible (`focus-visible` ring, never removed without a replacement).
 - Status always pairs **colour with an icon or text** (badges, alerts, toasts).
 - Small controls (checkbox, radio, switch) get an invisible `::after` hit area of 24px, or 44px at `size="lg"`.

@@ -24,7 +24,7 @@ export function AvatarDocs() {
       <DocsSection title="Sizes">
         <p className="text-muted-foreground">
           Match the control heights: <code className={code}>sm</code> 32px,{" "}
-          <code className={code}>md</code> 36px (default), <code className={code}>lg</code> 44px.
+          <code className={code}>md</code> 40px (default), <code className={code}>lg</code> 48px.
         </p>
         <div className="flex items-center gap-4">
           {(["sm", "md", "lg"] as const).map((size) => (

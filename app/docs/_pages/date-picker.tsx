@@ -82,8 +82,8 @@ export function DatePickerDocs() {
       <DocsSection title="Sizes">
         <p className="text-muted-foreground">
           The trigger takes <code className={code}>size</code>:{" "}
-          <code className={code}>sm</code> 32px, <code className={code}>md</code> 36px (default),{" "}
-          <code className={code}>lg</code> 44px, matching Input and Select.
+          <code className={code}>sm</code> 32px, <code className={code}>md</code> 40px (default),{" "}
+          <code className={code}>lg</code> 48px, matching Input and Select.
         </p>
         <div className="flex flex-col gap-4">
           <LabelledDatePicker id="size-sm" label="Small" size="sm" />

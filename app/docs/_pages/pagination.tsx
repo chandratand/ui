@@ -123,8 +123,8 @@ export function PaginationDocs() {
         <p className="text-muted-foreground">
           Every link takes <code className="font-mono text-sm">size</code>:{" "}
           <code className="font-mono text-sm">sm</code> 32px,{" "}
-          <code className="font-mono text-sm">md</code> 36px (default),{" "}
-          <code className="font-mono text-sm">lg</code> 44px for touch.
+          <code className="font-mono text-sm">md</code> 40px (default),{" "}
+          <code className="font-mono text-sm">lg</code> 48px for touch.
         </p>
         <div className="flex flex-col gap-4">
           <ExamplePagination size="sm" />

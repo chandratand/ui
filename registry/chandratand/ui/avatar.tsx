@@ -7,7 +7,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 /**
- * User photo with initials fallback. Sizes match control heights (32/36/44px).
+ * User photo with initials fallback. Sizes match control heights (32/40/48px).
  * Give AvatarImage a meaningful `alt` (the person's name) unless a name is shown next to it.
  */
 const avatarVariants = cva(

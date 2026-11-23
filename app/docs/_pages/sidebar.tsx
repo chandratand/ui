@@ -192,8 +192,8 @@ function StaticSidebar({ children }: { children: React.ReactNode }) {
 
 const sizes = [
   { size: "sm", label: "Small, 32px" },
-  { size: "md", label: "Medium, 36px (default)" },
-  { size: "lg", label: "Large, 44px" },
+  { size: "md", label: "Medium, 40px (default)" },
+  { size: "lg", label: "Large, 48px" },
 ] as const;
 
 export function SidebarDocs() {
@@ -237,7 +237,7 @@ export function SidebarDocs() {
       <DocsSection title="Sizes">
         <p className="text-muted-foreground">
           {code("SidebarMenuButton")} and {code("SidebarMenuSubButton")} take {code("size")}:{" "}
-          {code("sm")} 32px for dense apps, {code("md")} 36px (default), {code("lg")} 44px for
+          {code("sm")} 32px for dense apps, {code("md")} 40px (default), {code("lg")} 48px for
           touch. Collapsed to icons, every item is {code("md")}.
         </p>
         <StaticSidebar>

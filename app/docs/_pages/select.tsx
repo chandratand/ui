@@ -42,8 +42,8 @@ export function SelectDocs() {
       <DocsSection title="Sizes">
         <p className="text-muted-foreground">
           The trigger takes <code className={code}>size</code> like Input:{" "}
-          <code className={code}>sm</code> 32px, <code className={code}>md</code> 36px (default),{" "}
-          <code className={code}>lg</code> 44px.
+          <code className={code}>sm</code> 32px, <code className={code}>md</code> 40px (default),{" "}
+          <code className={code}>lg</code> 48px.
         </p>
         <div className="flex max-w-sm flex-col gap-4">
           {(["sm", "md", "lg"] as const).map((size) => (
