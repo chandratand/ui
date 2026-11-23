@@ -81,7 +81,7 @@
 
 /* ───────────── Semantic: chandratand, light ───────────── */
 :root {
-  --background: #ffffff;
+  --background: var(--neutral-50);              /* off-white so white card/popover read as raised */
   --foreground: var(--neutral-950);
   --card: #ffffff;
   --card-foreground: var(--neutral-950);
