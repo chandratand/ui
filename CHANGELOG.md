@@ -8,6 +8,15 @@ No version tags or changesets: the date is the version.
 
 ## 2026-11-23
 
+- **Breaking** (visual), `tokens`: the light-Mode page `background` is now neutral-50 (`#f9fafb`) instead of white. `card` and `popover` stay white, so they read as raised, as they already did in dark Mode. In your app, anything you gave `bg-background` that should stay white (a panel, a filled control) now wants `bg-card`, and anything floating wants `bg-popover`. Re-pull these with them, since they move off `bg-background` the same way:
+  - `dialog`, `alert-dialog` and `sheet` now use `bg-popover`, so in dark Mode they are lighter than the page behind the scrim instead of the darkest surface. `sonner`'s cancel button uses `bg-card`.
+  - `input`, `textarea`, `select`, `checkbox`, `radio-group`, the outline `button` and the active segmented `tabs` trigger use `bg-card`, so they are white on the page and in a card.
+  - `calendar` has no fill of its own and takes the surface it sits on (the Popover in `date-picker`).
+  - `field`: `FieldSeparator` with text draws a line either side instead of masking one line with a fill, so it works on any surface.
+  - `sidebar`: the `inset` variant's page panel, its hover and current-page fills, the `outline` menu button, `SidebarInput` and the menu action's hover use `bg-card`. The default sidebar stays on `bg-background`.
+  - `app-shell`: the "Skip to content" link uses `bg-popover`.
+- Docs: the design-system doc explains which surface token a component uses (§4.1, §4.6). Research note on pure black and white in `docs/research/pure-black-and-white.md`.
+
 - Added `login-form`, a Block: `LoginForm`, a sign-in form in a Card with no form library. The email field has `autocomplete="username"` and the password `autocomplete="current-password"`, so browsers and password managers fill them. Errors show and are announced on their Field, focus moves to the first invalid control, and a valid submit calls `onSubmit` with the trimmed email and the password as typed. Sending them is up to the app. Installs `chandratand/ui/button`, `card`, `field` and `input`.
 
 ## 2026-11-22

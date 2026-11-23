@@ -91,8 +91,8 @@ Everything else (neutrals, status colours, radius, sizes, motion) is shared by e
 
 | Token | Use | Light | Dark |
 | --- | --- | --- | --- |
-| `background` / `foreground` | Page, body text | white / neutral-950 | neutral-950 / neutral-50 |
-| `card`, `popover` (+ `-foreground`) | Surfaces | white | neutral-900 |
+| `background` / `foreground` | Page, body text | neutral-50 / neutral-950 | neutral-950 / neutral-50 |
+| `card`, `popover` (+ `-foreground`) | Raised surfaces, form controls | white | neutral-900 |
 | `primary` (+ `-foreground`, `-hover`, `-active`) | Main action, links, selection | brand-600 | brand-400 |
 | `secondary`, `muted`, `accent` | Quiet fills, hover backgrounds | neutral-100 | neutral-800 |
 | `muted-foreground` | Secondary text | 4.98:1 on muted | neutral-400 |
@@ -102,6 +102,15 @@ Everything else (neutrals, status colours, radius, sizes, motion) is shared by e
 | `overlay` | Scrim behind dialogs and sheets | black 50% | black 70% |
 
 `border` vs `input` matters: `border` is allowed to be faint because it's decoration. `input` marks where a control is, so it must meet the 3:1 non-text contrast rule.
+
+**Surfaces get lighter as they rise, in both Modes.** The page (`background`) is the darkest surface; `card` and `popover` sit on it and are lighter. That is why the light page is off-white rather than white: a white card on a white page is held apart by its border alone. In dark Mode, near-black rather than black does the same job, since shadows don't show on black. So in a component:
+
+- `bg-background` only for what *is* the page: the Sidebar and the App shell header.
+- `bg-popover` for anything that floats: dialogs, alert dialogs, sheets, toasts, menus.
+- `bg-card` for cards and for filled controls (inputs, selects, checkboxes, radios, the outline button, the active segmented tab), so a field is white whether it sits on the page or in a card.
+- Nothing that has to match the surface behind it (a fill that masks a line, say): it breaks on the other surface. `FieldSeparator` draws two lines either side of its text for this reason.
+
+**Pure white and black stay where they are.** `-foreground` on light-Mode solid fills is white because off-white costs contrast (warning drops from 4.96:1 to 4.76:1). The `overlay` scrim is neutral black, as in Material 3. Body text is never `#000` (neutral-950). The research behind this: [`docs/research/pure-black-and-white.md`](research/pure-black-and-white.md).
 
 **Status colours.** Four statuses, each with the same four tokens:
 
@@ -161,11 +170,11 @@ Rule of thumb: the inner element is never rounder than its container.
 
 ### 4.6 Elevation
 
-| Level | Style | Use |
-| --- | --- | --- |
-| 0 | `border`, no shadow | Cards, tables, alerts, everything on the page |
-| 1 | `border` + `shadow-sm` | Popovers, dropdowns, select content, tooltips, toasts |
-| 2 | `border` + `shadow-lg` + `bg-overlay` scrim | Dialogs, alert dialogs, sheets |
+| Level | Style | Surface | Use |
+| --- | --- | --- | --- |
+| 0 | `border`, no shadow | `bg-card` | Cards, tables, alerts, everything on the page |
+| 1 | `border` + `shadow-sm` | `bg-popover` | Popovers, dropdowns, select content, tooltips, toasts |
+| 2 | `border` + `shadow-lg` + `bg-overlay` scrim | `bg-popover` | Dialogs, alert dialogs, sheets |
 
 ### 4.7 Motion
 
