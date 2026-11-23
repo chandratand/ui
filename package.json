@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "registry:build": "node scripts/tokens-to-registry.mjs && shadcn build",
+    "registry:build": "node scripts/tokens-to-registry.mjs && node scripts/style-to-registry.mjs && shadcn build",
     "test:e2e": "playwright test"
   },
   "dependencies": {
