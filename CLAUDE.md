@@ -2,7 +2,7 @@
 
 # chandratand/ui — design system
 
-Shared tokens + React components for every chandratand project (portfolio, SaaS). Distributed as a **shadcn registry** (copy-paste, not an npm package): consumers run `npx shadcn add chandratand/ui/<name>` (GitHub registry, this public repo) and own the copied code.
+Shared tokens + React components for every chandratand project (portfolio, SaaS). Distributed as a **shadcn registry** (copy-paste, not an npm package): consumers start with `npx shadcn init chandratand/ui/style` (or `…/tokens`), then run `npx shadcn add chandratand/ui/<name>` (GitHub registry, this public repo) and own the copied code. Never a plain `shadcn init` first: its Base UI setup makes the CLI rewrite our Radix components (README).
 
 **`docs/design-system.md`** holds the design rules with their reasons, the workflows (§7: port from shadcn, new component, change a token) and the component inventory with what's next (§8). Read it before writing or porting a component or touching a token; update it in the same change when a rule, token or inventory status changes. The hard rules below are the short version.
 

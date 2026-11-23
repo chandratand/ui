@@ -8,7 +8,10 @@ No version tags or changesets: the date is the version.
 
 ## 2026-11-23
 
-- Added `style`, a `registry:style` (`extends: "none"`): `npx shadcn add chandratand/ui/style` installs `tokens` and every Component in one command. Blocks are not included; add each one on its own. The item is generated from `registry.json` by `pnpm registry:build`, so new Components join it automatically.
+- Install with `init`, not `add`: start a Consumer app with `npx shadcn init chandratand/ui/style`, or `npx shadcn init chandratand/ui/tokens` and then add Components one by one. A plain `npx shadcn init` now sets the app up for Base UI (`"style": "base-nova"`), and the CLI rewrites our Radix Components for it into code that does not compile (`alert-dialog`, `combobox`, `date-picker`, `select`, and a nested button in `sidebar`). An existing app with a `base-*` style: switch `components.json` to `"style": "new-york"`, then `add … --overwrite`. README and the home page explain both paths.
+- `dialog`, `sheet`, `alert-dialog`, `dropdown-menu`, `tooltip` and `popover` now import `tw-animate-css` into the app's CSS. After `init chandratand/ui/style` the package was installed but never imported, so these lost their enter and exit animations.
+- `tokens`: the base layer now sets `border-border` on every element and `bg-background text-foreground` on `body`, so bare `border` and the page itself follow the tokens and `.dark` in an app with no shadcn base layer. On a shadcn app the CLI merges these into the existing rules.
+- Added `style`, a `registry:style` (`extends: "none"`): `npx shadcn init chandratand/ui/style` installs `tokens` and every Component in one command. Blocks are not included; add each one on its own. The item is generated from `registry.json` by `pnpm registry:build`, so new Components join it automatically.
 - Added `login-form`, a Block: `LoginForm`, a sign-in form in a Card with no form library. The email field has `autocomplete="username"` and the password `autocomplete="current-password"`, so browsers and password managers fill them. Errors show and are announced on their Field, focus moves to the first invalid control, and a valid submit calls `onSubmit` with the trimmed email and the password as typed. Sending them is up to the app. Installs `chandratand/ui/button`, `card`, `field` and `input`.
 
 ## 2026-11-22

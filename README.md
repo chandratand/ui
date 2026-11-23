@@ -7,15 +7,33 @@ The chandratand design system: tokens and React components shared by the chandra
 
 ## Use in a project
 
-Requires a shadcn project (`components.json`, Tailwind CSS v4).
+Requires Tailwind CSS v4. The components are built on Radix, so the app must be a Radix shadcn project: start it with one of our items, not a plain `shadcn init` (see step 1).
 
-1. Add the Style: the Tokens and every Component in one command. The shadcn CLI merges the tokens into your `globals.css` (`:root`, `.dark`, `@theme inline` and reduced-motion rules):
+1. Start the app with the Style: the Tokens and every Component in one command. The shadcn CLI writes `components.json` and merges the tokens into your `globals.css` (`:root`, `.dark`, `@theme inline`, base layer and reduced-motion rules):
 
    ```bash
-   npx shadcn@latest add chandratand/ui/style
+   npx shadcn@latest init chandratand/ui/style
    ```
 
-   Or pick: `chandratand/ui/tokens` first, then only the components you need (`chandratand/ui/button chandratand/ui/input …`).
+   Or start with the Tokens only, then add just the components you need:
+
+   ```bash
+   npx shadcn@latest init chandratand/ui/tokens
+   npx shadcn@latest add chandratand/ui/button chandratand/ui/input
+   ```
+
+   Don't run a plain `npx shadcn init` first. It now sets the app up for Base UI (`"style": "base-nova"`), and the CLI then rewrites our Radix components (`asChild` → `render`) into code that does not compile.
+
+   **Already a shadcn app?**
+
+   1. If `style` in `components.json` starts with `base-`, change it to `"style": "new-york"`.
+   2. Add with `--overwrite`, so our components replace shadcn's files of the same name (without it the CLI stops at a prompt and installs nothing):
+
+      ```bash
+      npx shadcn@latest add chandratand/ui/style --overwrite
+      ```
+
+   3. In your own code, swap Base UI `render={…}` props for `asChild`. shadcn-only leftovers (`--sidebar-*` variables, `@base-ui/react`) are unused and can be removed.
 
 2. Add Blocks one by one; the Style does not include them, since the app owns and edits a Block after install:
 

@@ -23,7 +23,7 @@ The rules of the chandratand design system: what it is, the values it is built o
 A **shadcn registry**: tokens and React components that every chandratand project (portfolio, SaaS) copies in with the shadcn CLI.
 
 ```bash
-npx shadcn@latest add chandratand/ui/tokens      # theme, merged into globals.css
+npx shadcn@latest init chandratand/ui/tokens     # theme, merged into globals.css (or init …/style: tokens + every component)
 npx shadcn@latest add chandratand/ui/button      # a component, copied into the app
 ```
 
@@ -278,7 +278,7 @@ Same as 7.1 from step 2, starting from the closest existing chandratand/ui compo
 
 ### 7.4 Use chandratand/ui in an app
 
-See `README.md`. In short: `shadcn add chandratand/ui/style` (tokens + every Component; or `tokens`, then components one by one), then each Block the app needs; the app sets `.dark` (and `data-brand` if a Brand other than the default exists) and loads fonts; components are never edited in the app.
+See `README.md`. In short: `shadcn init chandratand/ui/style` (tokens + every Component; or `init chandratand/ui/tokens`, then `add` components one by one), then each Block the app needs. Never a plain `shadcn init` first: it sets the app up for Base UI, and the CLI rewrites our Radix components for it so they no longer compile; an existing app switches `components.json` `style` to `new-york` before `add --overwrite`. The app sets `.dark` (and `data-brand` if a Brand other than the default exists) and loads fonts; components are never edited in the app.
 
 ### 7.5 Done criteria for a change
 
