@@ -991,6 +991,24 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "login-form",
+      "type": "registry:block",
+      "title": "Login form",
+      "description": "Sign-in form in a Card: email and password with the autocomplete hints password managers expect, errors announced on their field, focus on the first invalid one. Submission is left to the app.",
+      "registryDependencies": [
+        "chandratand/ui/button",
+        "chandratand/ui/card",
+        "chandratand/ui/field",
+        "chandratand/ui/input"
+      ],
+      "files": [
+        {
+          "path": "registry/chandratand/blocks/login-form/components/login-form.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
