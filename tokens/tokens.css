@@ -1,39 +1,40 @@
 /*
  * chandratand/ui tokens — framework-agnostic CSS variables.
- * Source: chandratand design system artifact (Claude Design), with three changes:
+ * EXPERIMENT (branch experiment/portfolio-tokens): values taken from the portfolio's
+ * pre-chandratand/ui theme (venice-blue ramp, shadcn radius 0.5rem, 32/40/48 controls,
+ * Inter + Montserrat). Token names and structure are unchanged.
  *   1. Dark mode uses the `.dark` class (shadcn / next-themes standard).
  *   2. Brand is a separate axis: `data-brand="<name>"` on <html>. Mode and brand combine freely.
- *   3. Radius scale is the artifact's (base 6px).
  * Primitive ramps → semantic tokens (shadcn names). Brands override semantic tokens only.
  */
 
 /* ───────────── Primitives ───────────── */
 :root {
-  /* Brand ramp, hue 247.3 — anchor #326897 = brand-600 */
-  --brand-50: oklch(0.970 0.012 247.3);  /* #eff6fd */
-  --brand-100: oklch(0.930 0.025 247.3); /* #dbeaf8 */
-  --brand-200: oklch(0.870 0.045 247.3); /* #bdd8f1 */
-  --brand-300: oklch(0.790 0.070 247.3); /* #97bfe6 */
-  --brand-400: oklch(0.720 0.090 247.3); /* #76aada — ring and primary hover in dark */
-  --brand-500: oklch(0.620 0.100 247.3); /* #518bbf — ring in light, primary in dark */
-  --brand-600: oklch(0.503 0.095 247.3); /* #326897 — anchor, primary in light */
-  --brand-700: oklch(0.440 0.085 247.3); /* #27567f */
-  --brand-800: oklch(0.370 0.072 247.3); /* #1c4264 */
-  --brand-900: oklch(0.300 0.058 247.3); /* #133049 */
-  --brand-950: oklch(0.220 0.045 247.3); /* #071c2e */
+  /* Brand ramp = portfolio venice-blue — anchor #326897 = brand-600 */
+  --brand-50: oklch(0.975 0.006 255.475);
+  --brand-100: oklch(0.948 0.014 247.973);
+  --brand-200: oklch(0.888 0.03 243.447);
+  --brand-300: oklch(0.791 0.057 242.775);
+  --brand-400: oklch(0.678 0.086 243.089);
+  --brand-500: oklch(0.587 0.099 244.523);
+  --brand-600: oklch(0.503 0.095 247.285);
+  --brand-700: oklch(0.442 0.082 248.627);
+  --brand-800: oklch(0.388 0.066 248.479);
+  --brand-900: oklch(0.352 0.054 249.582);
+  --brand-950: oklch(0.271 0.038 250.825);
 
-  /* Neutral ramp, tinted to the brand hue */
-  --neutral-50: oklch(0.985 0.002 247.3);  /* #f9fafb */
-  --neutral-100: oklch(0.967 0.004 247.3); /* #f2f4f7 */
-  --neutral-200: oklch(0.922 0.006 247.3); /* #e2e6e9 */
-  --neutral-300: oklch(0.870 0.008 247.3); /* #d0d5d9 */
-  --neutral-400: oklch(0.708 0.012 247.3); /* #9ba2a8 */
-  --neutral-500: oklch(0.556 0.014 247.3); /* #6d747b — not for text on neutral-100 */
-  --neutral-600: oklch(0.439 0.014 247.3); /* #4c535a */
-  --neutral-700: oklch(0.371 0.013 247.3); /* #3b4147 */
-  --neutral-800: oklch(0.269 0.011 247.3); /* #22272b */
-  --neutral-900: oklch(0.205 0.009 247.3); /* #14181b */
-  --neutral-950: oklch(0.145 0.007 247.3); /* #080a0d */
+  /* Neutral ramp, achromatic like the portfolio's dark mode */
+  --neutral-50: oklch(0.985 0 0);
+  --neutral-100: oklch(0.97 0 0);
+  --neutral-200: oklch(0.922 0 0);
+  --neutral-300: oklch(0.87 0 0);
+  --neutral-400: oklch(0.708 0 0);
+  --neutral-500: oklch(0.556 0 0);
+  --neutral-600: oklch(0.439 0 0);
+  --neutral-700: oklch(0.371 0 0);
+  --neutral-800: oklch(0.275 0 0);
+  --neutral-900: oklch(0.205 0 0);
+  --neutral-950: oklch(0.145 0 0);
 
   /* Spacing (4px base, 8px rhythm) */
   --space-1: 4px;
@@ -47,17 +48,17 @@
   --space-12: 48px;
   --space-16: 64px;
 
-  /* Radius (base 6px) */
-  --radius: 0.375rem;
-  --radius-sm: 2px;   /* badges, checkboxes */
-  --radius-md: 4px;   /* inputs, buttons, menu items */
-  --radius-lg: 6px;   /* cards, dialogs, popovers */
-  --radius-xl: 8px;   /* large marketing panels only */
+  /* Radius: the portfolio's shadcn scale on --radius 0.5rem */
+  --radius: 0.5rem;
+  --radius-sm: 4px;   /* badges, checkboxes */
+  --radius-md: 6px;   /* inputs, buttons, menu items */
+  --radius-lg: 8px;   /* cards, dialogs, popovers */
+  --radius-xl: 12px;  /* large panels */
 
-  /* Sizing & density */
-  --control-sm: 32px; /* dense ERP screens */
-  --control-md: 36px; /* default */
-  --control-lg: 44px; /* touch / kiosk */
+  /* Sizing & density: the portfolio's Button heights (h-8 / h-10 / h-12) */
+  --control-sm: 32px;
+  --control-md: 40px; /* default */
+  --control-lg: 48px;
   --row-comfortable: 40px;
   --row-compact: 32px;
   --icon-sm: 16px;
@@ -74,44 +75,44 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 
   /* Fonts — the app loads the font files and may override these. Components only use the tokens. */
-  --font-sans: Geist, ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-sans);
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-heading: Montserrat, var(--font-sans);
   --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 /* ───────────── Semantic: chandratand, light ───────────── */
 :root {
-  --background: var(--neutral-50);              /* off-white so white card/popover read as raised */
-  --foreground: var(--neutral-950);
+  --background: oklch(0.985 0.005 255.475);
+  --foreground: var(--brand-950);
   --card: #ffffff;
-  --card-foreground: var(--neutral-950);
+  --card-foreground: var(--brand-950);
   --popover: #ffffff;
-  --popover-foreground: var(--neutral-950);
+  --popover-foreground: var(--brand-950);
   --primary: var(--brand-600);
-  --primary-foreground: #ffffff;
+  --primary-foreground: var(--brand-50);
   --primary-hover: var(--brand-700);
   --primary-active: var(--brand-800);
-  --secondary: var(--neutral-100);
-  --secondary-foreground: var(--neutral-900);
-  --muted: var(--neutral-100);
-  --muted-foreground: oklch(0.52 0.014 247.3); /* 4.98:1 on muted */
-  --accent: var(--neutral-100);
-  --accent-foreground: var(--neutral-900);
-  --border: var(--neutral-200);                /* decorative only */
-  --input: oklch(0.62 0.013 247.3);            /* form controls, 3.64:1 */
+  --secondary: var(--brand-100);
+  --secondary-foreground: var(--brand-800);
+  --muted: var(--brand-100);
+  --muted-foreground: var(--brand-600);
+  --accent: var(--brand-200);
+  --accent-foreground: var(--brand-800);
+  --border: var(--brand-200);
+  --input: var(--brand-200);
   --ring: var(--brand-500);
   --overlay: oklch(0 0 0 / 0.5);               /* dialog/sheet scrim */
 
-  --success: #0a7e3a;
-  --success-foreground: #ffffff;
+  --success: oklch(0.6 0.145 152);
+  --success-foreground: oklch(0.985 0.01 152);
   --success-bg: oklch(0.970 0.022 150);
   --success-border: oklch(0.870 0.060 150);
   --warning: #a36000;
   --warning-foreground: #ffffff;
   --warning-bg: oklch(0.970 0.022 75);
   --warning-border: oklch(0.870 0.060 75);
-  --destructive: #c2181d;
-  --destructive-foreground: #ffffff;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0.01 17);
   --destructive-bg: oklch(0.970 0.022 27);
   --destructive-border: oklch(0.870 0.060 27);
   --info: #0074a0;
@@ -119,11 +120,11 @@
   --info-bg: oklch(0.970 0.022 230);
   --info-border: oklch(0.870 0.060 230);
 
-  --chart-1: #3c85c4;
-  --chart-2: #1b9e8c;
-  --chart-3: #b37407;
-  --chart-4: #884183;
-  --chart-5: #a43427;
+  --chart-1: var(--brand-600);
+  --chart-2: var(--brand-400);
+  --chart-3: var(--brand-300);
+  --chart-4: var(--brand-700);
+  --chart-5: var(--brand-900);
 
   color-scheme: light;
 }
@@ -131,27 +132,27 @@
 /* ───────────── Semantic: chandratand, dark ───────────── */
 .dark {
   --background: var(--neutral-950);
-  --foreground: var(--neutral-50);
+  --foreground: var(--neutral-100);
   --card: var(--neutral-900);
-  --card-foreground: var(--neutral-50);
+  --card-foreground: var(--neutral-100);
   --popover: var(--neutral-900);
-  --popover-foreground: var(--neutral-50);
-  --primary: var(--brand-500);
-  --primary-foreground: var(--neutral-950);
-  --primary-hover: var(--brand-400);
-  --primary-active: var(--brand-300);
-  --secondary: var(--neutral-800);
-  --secondary-foreground: var(--neutral-50);
-  --muted: var(--neutral-800);
+  --popover-foreground: var(--neutral-100);
+  --primary: var(--brand-600);
+  --primary-foreground: var(--brand-50);
+  --primary-hover: var(--brand-500);
+  --primary-active: var(--brand-400);
+  --secondary: oklch(0.245 0 0);
+  --secondary-foreground: var(--neutral-100);
+  --muted: oklch(0.245 0 0);
   --muted-foreground: var(--neutral-400);
   --accent: var(--neutral-800);
-  --accent-foreground: var(--neutral-50);
-  --border: var(--neutral-800);
-  --input: oklch(0.52 0.012 247.3);            /* 3.62:1 */
-  --ring: var(--brand-400);
+  --accent-foreground: var(--neutral-100);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--brand-500);
   --overlay: oklch(0 0 0 / 0.7);               /* dialog/sheet scrim */
 
-  --success: #6fc483;
+  --success: oklch(0.72 0.17 152);
   --success-foreground: var(--neutral-950);
   --success-bg: oklch(0.250 0.035 150);
   --success-border: oklch(0.400 0.060 150);
@@ -159,7 +160,7 @@
   --warning-foreground: var(--neutral-950);
   --warning-bg: oklch(0.250 0.035 75);
   --warning-border: oklch(0.400 0.060 75);
-  --destructive: #ff796d;
+  --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: var(--neutral-950);
   --destructive-bg: oklch(0.250 0.035 27);
   --destructive-border: oklch(0.400 0.060 27);
@@ -168,11 +169,11 @@
   --info-bg: oklch(0.250 0.035 230);
   --info-border: oklch(0.400 0.060 230);
 
-  --chart-1: #62abec;
-  --chart-2: #59ceba;
-  --chart-3: #d79628;
-  --chart-4: #ab61a5;
-  --chart-5: #ca5748;
+  --chart-1: var(--brand-300);
+  --chart-2: var(--brand-400);
+  --chart-3: var(--brand-500);
+  --chart-4: var(--brand-600);
+  --chart-5: var(--brand-700);
 
   color-scheme: dark;
 }
