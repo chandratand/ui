@@ -319,17 +319,18 @@ function FieldSeparator({ children, className, ...props }: React.ComponentProps<
     <div
       data-slot="field-separator"
       data-content={!!children}
-      className={cn("relative h-5 text-sm", className)}
+      className={cn("flex h-5 items-center gap-2 text-sm", className)}
       {...props}
     >
-      <Separator className="absolute inset-x-0 top-1/2" />
+      {/* Two lines beside the text, not one line masked by a fill, so it works on any surface. */}
+      <Separator className="flex-1" />
       {children && (
-        <span
-          data-slot="field-separator-content"
-          className="relative mx-auto block w-fit bg-background px-2 text-muted-foreground"
-        >
-          {children}
-        </span>
+        <>
+          <span data-slot="field-separator-content" className="shrink-0 text-muted-foreground">
+            {children}
+          </span>
+          <Separator className="flex-1" />
+        </>
       )}
     </div>
   );
