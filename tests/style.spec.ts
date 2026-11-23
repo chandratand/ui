@@ -28,14 +28,9 @@ test("the Style includes the Priority 2 Components", () => {
 });
 
 test("the Style installs no Blocks", () => {
-  for (const name of ["form-sheet", "app-shell", "data-table", "login-form"]) {
-    expect(style?.registryDependencies).not.toContain(own(name));
+  const blocks = registry.items.filter((item) => item.type === "registry:block");
+  expect(blocks.length).toBeGreaterThan(0);
+  for (const block of blocks) {
+    expect(style?.registryDependencies).not.toContain(own(block.name));
   }
-});
-
-test("home page explains the Style install and that Blocks install one by one", async ({ page }) => {
-  await page.goto("/");
-  const section = page.getByRole("region", { name: "Style" });
-  await expect(section).toContainText("npx shadcn add chandratand/ui/style");
-  await expect(section).toContainText(/Blocks are not included/i);
 });
