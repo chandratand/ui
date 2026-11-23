@@ -1,6 +1,5 @@
-// Writes the `style` item (`registry:style`) into registry.json: Tokens plus every
-// Component (`registry:ui`), and no Blocks. Generated so a new Component cannot be
-// left out; do not edit the style item by hand — run `pnpm registry:build`.
+// Generated so a new Component cannot be left out of the Style; do not edit the
+// style item in registry.json by hand — run `pnpm registry:build`.
 //
 // `extends: "none"`: the Style stands alone instead of layering on a shadcn style.
 

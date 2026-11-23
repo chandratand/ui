@@ -40,7 +40,7 @@ export default function Home() {
         <p className="max-w-2xl text-muted-foreground">
           Bootstrap a Consumer app with one command: it installs the Tokens and every Component.
         </p>
-        <pre className="w-fit max-w-full overflow-x-auto rounded-md border border-border bg-muted px-4 py-3 font-mono text-sm">
+        <pre className="w-fit rounded-md border border-border bg-muted px-3 py-2 font-mono text-sm">
           <code>npx shadcn add chandratand/ui/style</code>
         </pre>
         <p className="max-w-2xl text-muted-foreground">
