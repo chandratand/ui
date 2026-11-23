@@ -15,3 +15,10 @@ test("every item that installs tw-animate-css also imports it into the app's CSS
     expect(cssOf(item), item.name).toHaveProperty(['@import "tw-animate-css"']);
   }
 });
+
+test("the Tokens give borders, page background and text their semantic colors", () => {
+  const tokens = registry.items.find((item) => item.name === "tokens")!;
+  const base = cssOf(tokens)?.["@layer base"];
+  expect(base?.["*"]).toEqual({ "@apply border-border": {} });
+  expect(base?.body).toEqual({ "@apply bg-background text-foreground": {} });
+});

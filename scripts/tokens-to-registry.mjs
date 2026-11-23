@@ -15,7 +15,8 @@
 //   other :root vars (primitives, spacing, sizes, motion, fonts) → css[":root"],
 //     so the CLI does not add junk `--x: var(--x)` lines to @theme inline.
 //   other selectors ([data-brand]) and @media → css, as written.
-//   color-scheme → css["@layer base"].
+//   color-scheme, plus border/body colors → css["@layer base"]: a Style install
+//     (`extends: "none"`) gets no shadcn base layer, so the tokens carry one.
 //   @custom-variant dark is NOT shipped: shadcn projects already define it.
 
 import { readFileSync, writeFileSync } from "node:fs";
@@ -94,6 +95,8 @@ for (const at of mediaRules) {
 css["@layer base"] = {
   ":root": { "color-scheme": "light" },
   ".dark": { "color-scheme": "dark" },
+  "*": { "@apply border-border": {} },
+  body: { "@apply bg-background text-foreground": {} },
 };
 
 const item = {
