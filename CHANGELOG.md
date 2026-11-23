@@ -8,6 +8,14 @@ No version tags or changesets: the date is the version.
 
 ## 2026-11-23
 
+- **Breaking** (visual), `tokens`: the light-Mode page `background` is now neutral-50 (`#f9fafb`) instead of white. `card` and `popover` stay white, so they read as raised, as they already did in dark Mode. In your app, anything you gave `bg-background` that should stay white (a panel, a filled control) now wants `bg-card`, and anything floating wants `bg-popover`. Re-pull these with them, since they move off `bg-background` the same way (or re-pull `style` with `--overwrite` to get all of them; `app-shell` is a Block and re-pulls on its own):
+  - `dialog`, `alert-dialog` and `sheet` now use `bg-popover`, so in dark Mode they are lighter than the page behind the scrim instead of the darkest surface. `sonner`'s cancel button uses `bg-card`.
+  - `input`, `textarea`, `select`, `checkbox`, `radio-group`, the outline `button` and the active segmented `tabs` trigger use `bg-card`, so they are white on the page and in a card.
+  - `calendar` has no fill of its own and takes the surface it sits on (the Popover in `date-picker`).
+  - `field`: `FieldSeparator` with text draws a line either side instead of masking one line with a fill, so it works on any surface.
+  - `sidebar`: the `inset` variant's page panel, its hover and current-page fills, the `outline` menu button, `SidebarInput` and the menu action's hover use `bg-card`. The default sidebar stays on `bg-background`.
+  - `app-shell`: the "Skip to content" link uses `bg-popover`.
+- Docs: the design-system doc explains which surface token a component uses (§4.1, §4.6). Research note on pure black and white in `docs/research/pure-black-and-white.md`.
 - Install with `init`, not `add`: start a Consumer app with `npx shadcn init chandratand/ui/style`, or `npx shadcn init chandratand/ui/tokens` and then add Components one by one. A plain `npx shadcn init` now sets the app up for Base UI (`"style": "base-nova"`), and the CLI rewrites our Radix Components for it into code that does not compile (`alert-dialog`, `combobox`, `date-picker`, `select`, and a nested button in `sidebar`). An existing app with a `base-*` style: switch `components.json` to `"style": "new-york"`, then `add … --overwrite`. README and the home page explain both paths.
 - `dialog`, `sheet`, `alert-dialog`, `dropdown-menu`, `tooltip` and `popover` now import `tw-animate-css` into the app's CSS. After `init chandratand/ui/style` the package was installed but never imported, so these lost their enter and exit animations.
 - `tokens`: the base layer now sets `border-border` on every element and `bg-background text-foreground` on `body`, so bare `border` and the page itself follow the tokens and `.dark` in an app with no shadcn base layer. On a shadcn app the CLI merges these into the existing rules.

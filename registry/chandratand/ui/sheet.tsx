@@ -49,7 +49,7 @@ function SheetOverlay({
 
 const sheetVariants = cva(
   [
-    "fixed z-50 flex flex-col gap-4 overflow-y-auto bg-background p-6 text-foreground shadow-lg outline-none",
+    "fixed z-50 flex flex-col gap-4 overflow-y-auto bg-popover p-6 text-popover-foreground shadow-lg outline-none",
     "duration-(--duration-slow) ease-standard",
     "data-[state=open]:animate-in data-[state=closed]:animate-out",
   ],

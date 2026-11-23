@@ -52,7 +52,7 @@ function Calendar({
         },
       }}
       className={cn(
-        "group/calendar bg-background p-3 [--cell-size:var(--spacing-control-sm)]",
+        "group/calendar bg-transparent p-3 [--cell-size:var(--spacing-control-sm)]",
         "[[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,

@@ -378,7 +378,7 @@ function SidebarInset({ className, asChild = false, ...props }: SidebarInsetProp
     <Comp
       data-slot="sidebar-inset"
       className={cn(
-        "relative flex w-full flex-1 flex-col bg-background",
+        "relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:bg-card",
         "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-lg md:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:border-border md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
         className,
       )}
@@ -393,7 +393,7 @@ function SidebarInput({ className, ...props }: React.ComponentProps<typeof Input
       data-slot="sidebar-input"
       data-sidebar="input"
       size="sm"
-      className={cn("w-full bg-background", className)}
+      className={cn("w-full bg-card", className)}
       {...props}
     />
   );
@@ -545,8 +545,8 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
 // The active item gets a bar on its leading edge and a heavier weight, not just a fill,
 // so it reads without colour.
 const currentPageClasses =
-  // On the inset variant the sidebar itself is muted (= accent), so fills switch to background.
-  "group-data-[variant=inset]:hover:bg-background group-data-[variant=inset]:aria-[current=page]:bg-background aria-[current=page]:bg-accent aria-[current=page]:font-medium aria-[current=page]:text-accent-foreground before:absolute before:inset-y-1.5 before:left-0 before:w-0.5 before:bg-primary before:opacity-0 aria-[current=page]:before:opacity-100";
+  // On the inset variant the sidebar itself is muted (= accent), so fills switch to card.
+  "group-data-[variant=inset]:hover:bg-card group-data-[variant=inset]:aria-[current=page]:bg-card aria-[current=page]:bg-accent aria-[current=page]:font-medium aria-[current=page]:text-accent-foreground before:absolute before:inset-y-1.5 before:left-0 before:w-0.5 before:bg-primary before:opacity-0 aria-[current=page]:before:opacity-100";
 
 const sidebarMenuButtonVariants = cva(
   [
@@ -565,7 +565,7 @@ const sidebarMenuButtonVariants = cva(
     variants: {
       variant: {
         ghost: "",
-        outline: "bg-background inset-ring inset-ring-border",
+        outline: "bg-card inset-ring inset-ring-border",
       },
       size: {
         sm: "h-control-sm text-xs [&>svg]:size-icon-sm",
@@ -650,7 +650,7 @@ function SidebarMenuAction({
       data-sidebar="menu-action"
       className={cn(
         "absolute right-1.5 flex size-6 items-center justify-center rounded-md p-0 text-foreground",
-        "transition-colors duration-(--duration-fast) ease-standard hover:bg-background hover:text-accent-foreground peer-hover/menu-button:text-accent-foreground",
+        "transition-colors duration-(--duration-fast) ease-standard hover:bg-card hover:text-accent-foreground peer-hover/menu-button:text-accent-foreground",
         "[&>svg]:size-icon-sm [&>svg]:shrink-0 [&>svg]:stroke-[1.5]",
         focusRing,
         "after:absolute after:-inset-2 md:after:hidden",
