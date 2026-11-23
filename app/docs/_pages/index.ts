@@ -22,6 +22,7 @@ import { FieldDocs } from "./field";
 import { FormSheetDocs } from "./form-sheet";
 import { InputDocs } from "./input";
 import { LabelDocs } from "./label";
+import { LoginFormDocs } from "./login-form";
 import { PaginationDocs } from "./pagination";
 import { PopoverDocs } from "./popover";
 import { ProgressDocs } from "./progress";
@@ -64,6 +65,7 @@ export const docsPages: Record<string, ComponentType> = {
   "form-sheet": FormSheetDocs,
   input: InputDocs,
   label: LabelDocs,
+  "login-form": LoginFormDocs,
   pagination: PaginationDocs,
   popover: PopoverDocs,
   progress: ProgressDocs,
