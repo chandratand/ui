@@ -93,7 +93,7 @@ Everything else (neutrals, status colours, radius, sizes, motion) is shared by e
 | --- | --- | --- | --- |
 | `background` / `foreground` | Page, body text | neutral-50 / neutral-950 | neutral-950 / neutral-50 |
 | `card`, `popover` (+ `-foreground`) | Raised surfaces, form controls | white | neutral-900 |
-| `primary` (+ `-foreground`, `-hover`, `-active`) | Main action, links, selection | brand-600 | brand-400 |
+| `primary` (+ `-foreground`, `-hover`, `-active`) | Main action, links, selection | brand-600 | brand-500 (hover 400, active 300) |
 | `secondary`, `muted`, `accent` | Quiet fills, hover backgrounds | neutral-100 | neutral-800 |
 | `muted-foreground` | Secondary text | 4.98:1 on muted | neutral-400 |
 | `border` | **Decorative** dividers and surface edges | neutral-200 | neutral-800 |

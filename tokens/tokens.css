@@ -14,8 +14,8 @@
   --brand-100: oklch(0.930 0.025 247.3); /* #dbeaf8 */
   --brand-200: oklch(0.870 0.045 247.3); /* #bdd8f1 */
   --brand-300: oklch(0.790 0.070 247.3); /* #97bfe6 */
-  --brand-400: oklch(0.720 0.090 247.3); /* #76aada — primary & ring in dark */
-  --brand-500: oklch(0.620 0.100 247.3); /* #518bbf — ring in light */
+  --brand-400: oklch(0.720 0.090 247.3); /* #76aada — ring and primary hover in dark */
+  --brand-500: oklch(0.620 0.100 247.3); /* #518bbf — ring in light, primary in dark */
   --brand-600: oklch(0.503 0.095 247.3); /* #326897 — anchor, primary in light */
   --brand-700: oklch(0.440 0.085 247.3); /* #27567f */
   --brand-800: oklch(0.370 0.072 247.3); /* #1c4264 */
@@ -136,10 +136,10 @@
   --card-foreground: var(--neutral-50);
   --popover: var(--neutral-900);
   --popover-foreground: var(--neutral-50);
-  --primary: var(--brand-400);
+  --primary: var(--brand-500);
   --primary-foreground: var(--neutral-950);
-  --primary-hover: var(--brand-300);
-  --primary-active: var(--brand-200);
+  --primary-hover: var(--brand-400);
+  --primary-active: var(--brand-300);
   --secondary: var(--neutral-800);
   --secondary-foreground: var(--neutral-50);
   --muted: var(--neutral-800);
