@@ -33,6 +33,14 @@ test("home page explains the Tokens-only start and moving an existing shadcn app
   await expect(section).toContainText("npx shadcn add chandratand/ui/style --overwrite");
 });
 
+test("home page says up front that this is a shadcn registry", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("link", { name: "shadcn registry" })).toHaveAttribute(
+    "href",
+    "https://ui.shadcn.com/docs/registry",
+  );
+});
+
 test("home page shows the Tokens", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 2, name: "Tokens" })).toBeVisible();

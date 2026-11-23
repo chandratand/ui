@@ -41,6 +41,16 @@ export default function Home() {
         <p className="max-w-2xl text-lg text-muted-foreground">
           Tokens and components shared by the portfolio and the SaaS. Calm, precise, trustworthy.
         </p>
+        <p className="max-w-2xl text-muted-foreground">
+          A <a
+            href="https://ui.shadcn.com/docs/registry"
+            className="rounded-sm text-foreground underline underline-offset-4 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            shadcn registry
+          </a>
+          , not an npm package: the shadcn CLI copies each item&apos;s source into your app. Built on shadcn/ui, Radix and Tailwind CSS v4, adjusted to
+          the chandratand tokens and accessibility rules (WCAG 2.2 AA). Install below.
+        </p>
         <ThemeControls />
       </header>
 
