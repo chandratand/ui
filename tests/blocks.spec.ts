@@ -5,6 +5,7 @@ import { appShellSmoke } from "./blocks/app-shell";
 import { dataTableSmoke } from "./blocks/data-table";
 import { formSheetSmoke } from "./blocks/form-sheet";
 import type { BlockSmoke } from "./blocks/harness";
+import { loginFormSmoke } from "./blocks/login-form";
 import { gotoHydrated } from "./hydration";
 
 /**
@@ -15,6 +16,7 @@ const smokeTests: Record<string, BlockSmoke> = {
   "app-shell": appShellSmoke,
   "data-table": dataTableSmoke,
   "form-sheet": formSheetSmoke,
+  "login-form": loginFormSmoke,
 };
 
 const blocks = registry.items.filter((item) => item.type === "registry:block");
