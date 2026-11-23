@@ -6,6 +6,10 @@ What changed in chandratand/ui, newest first. Each entry is dated and names the 
 
 No version tags or changesets: the date is the version.
 
+## 2026-11-23
+
+- Added `login-form`, a Block: `LoginForm`, a sign-in form in a Card with no form library. The email field has `autocomplete="username"` and the password `autocomplete="current-password"`, so browsers and password managers fill them. Errors show and are announced on their Field, focus moves to the first invalid control, and a valid submit calls `onSubmit` with the trimmed email and the password as typed. Sending them is up to the app. Installs `chandratand/ui/button`, `card`, `field` and `input`.
+
 ## 2026-11-22
 
 - Added `data-table`, a Block on TanStack Table v9 (`@tanstack/react-table`, a dependency of this Block only). `DataTable` searches every accessor column, filters one column with a Combobox (`filter`), pages with Pagination, and shows a Spinner while `loading` and an Empty state when nothing matches, with a button that clears the search and filter. The line under the table is a polite live region: it announces the count, the page and loading. Updating a row in `data` keeps the current page; a new search or filter goes back to page 1. `invoice-columns.tsx` is an example set of columns with a row actions menu (Dropdown Menu, non-modal). Installs `chandratand/ui/badge`, `button`, `combobox`, `dropdown-menu`, `empty`, `input`, `label`, `pagination`, `spinner` and `table`.
