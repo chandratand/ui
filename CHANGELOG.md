@@ -8,6 +8,7 @@ No version tags or changesets: the date is the version.
 
 ## 2026-11-23
 
+- Added `style`, a `registry:style` (`extends: "none"`): `npx shadcn add chandratand/ui/style` installs `tokens` and every Component in one command. Blocks are not included; add each one on its own. The item is generated from `registry.json` by `pnpm registry:build`, so new Components join it automatically.
 - Added `login-form`, a Block: `LoginForm`, a sign-in form in a Card with no form library. The email field has `autocomplete="username"` and the password `autocomplete="current-password"`, so browsers and password managers fill them. Errors show and are announced on their Field, focus moves to the first invalid control, and a valid submit calls `onSubmit` with the trimmed email and the password as typed. Sending them is up to the app. Installs `chandratand/ui/button`, `card`, `field` and `input`.
 
 ## 2026-11-22

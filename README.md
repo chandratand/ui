@@ -9,16 +9,18 @@ The chandratand design system: tokens and React components shared by the chandra
 
 Requires a shadcn project (`components.json`, Tailwind CSS v4).
 
-1. Add the Tokens. The shadcn CLI merges the tokens into your `globals.css` (`:root`, `.dark`, `@theme inline` and reduced-motion rules):
+1. Add the Style: the Tokens and every Component in one command. The shadcn CLI merges the tokens into your `globals.css` (`:root`, `.dark`, `@theme inline` and reduced-motion rules):
 
    ```bash
-   npx shadcn@latest add chandratand/ui/tokens
+   npx shadcn@latest add chandratand/ui/style
    ```
 
-2. Add components:
+   Or pick: `chandratand/ui/tokens` first, then only the components you need (`chandratand/ui/button chandratand/ui/input …`).
+
+2. Add Blocks one by one; the Style does not include them, since the app owns and edits a Block after install:
 
    ```bash
-   npx shadcn@latest add chandratand/ui/button chandratand/ui/input chandratand/ui/card
+   npx shadcn@latest add chandratand/ui/login-form
    ```
 
    The registry is this public GitHub repo (root `registry.json`); no hosting or `components.json` entry is needed.
@@ -32,7 +34,7 @@ Never edit chandratand/ui components inside an app. Fix them here, then pull aga
 ```bash
 pnpm install
 pnpm dev              # docs at localhost:3000, one page per item at /docs/<name>
-pnpm registry:build   # tokens/*.css → registry.json tokens item, then public/r/*.json
+pnpm registry:build   # tokens/*.css → registry.json tokens + style items, then public/r/*.json
 pnpm test:e2e         # Playwright + axe over every docs page, light and dark
 ```
 

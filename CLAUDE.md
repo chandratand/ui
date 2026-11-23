@@ -13,11 +13,12 @@ Shared tokens + React components for every chandratand project (portfolio, SaaS)
 | `tokens/tokens.css` | **Source of truth** for all CSS variables: primitives, semantic (shadcn names), `.dark`, `[data-brand]` overrides (none today), reduced motion. Framework-agnostic. |
 | `tokens/theme.css` | Tailwind v4 bridge (`@theme inline`, `dark` custom variant). |
 | `scripts/tokens-to-registry.mjs` | Generates the `tokens` item (`registry:theme`) in `registry.json` from `tokens/*.css`. Mapping documented at the top of the file. |
+| `scripts/style-to-registry.mjs` | Generates the `style` item (`registry:style`, `extends: "none"`): Tokens + every `registry:ui` item, no Blocks. |
 | `registry/chandratand/ui/*.tsx` | Component source — what the registry ships. |
 | `registry/chandratand/blocks/<name>/` | Block source (`registry:block`): Components composed into one screen pattern. The app owns it after install. Workflow in the design-system doc §7.6. |
 | `CHANGELOG.md` | Hand-written, dated entries per change, naming affected items; **Breaking** marked. Tells Consumer apps when to re-pull with `--overwrite`. No version tags or changesets. |
 | `.github/workflows/ci.yml` | CI: lint, build, registry build (+ stale-output check) on every push and PR. |
-| `registry.json` | Registry manifest. The `tokens` item is generated: change `tokens/*.css` and run `pnpm registry:build`. |
+| `registry.json` | Registry manifest. The `tokens` and `style` items are generated: change `tokens/*.css` (or add a Component) and run `pnpm registry:build`. |
 | `app/` | Docs site for this repo only (Next.js). Imports `tokens/*.css` directly. Not shipped. `app/page.tsx` is the index: links to every item page, plus the Tokens. |
 | `app/docs/` | Per-item docs pages: `/docs/<name>`, one per Component and Block in `registry.json`. Page bodies in `app/docs/_pages/`, registered in its `index.ts`. |
 | `app/preview/<name>/` | Full-page preview of a Block that fills the window (app shell), shown on its docs page in an iframe. Docs only, not shipped. How: design-system doc §7.6. |
@@ -47,7 +48,7 @@ Shared tokens + React components for every chandratand project (portfolio, SaaS)
 
 pnpm (version pinned in `package.json` → `packageManager`). Consumer-facing docs keep `npx shadcn add`, since apps use any package manager.
 
-`pnpm registry:build` runs `tokens/*.css` → `registry.json` tokens item, then `shadcn build` → `public/r/*.json`.
+`pnpm registry:build` runs `tokens/*.css` → `registry.json` tokens item, then the style item (Tokens + every Component), then `shadcn build` → `public/r/*.json`.
 
 `pnpm test:e2e` runs the Playwright suite (starts `next dev` on port 3100, or reuses one; in CI it serves the build). First run locally: `pnpm exec playwright install chromium`. Tests assert roles, names, focus and axe results only (plus computed animation state, for reduced-motion criteria), never class names or DOM structure.
 
