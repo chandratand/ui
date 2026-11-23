@@ -21,8 +21,16 @@ test("home page links to every Component and Block docs page", async ({ page }) 
 test("home page explains the Style install and that Blocks install one by one", async ({ page }) => {
   await page.goto("/");
   const section = page.getByRole("region", { name: "Style" });
-  await expect(section).toContainText("npx shadcn add chandratand/ui/style");
+  await expect(section).toContainText("npx shadcn init chandratand/ui/style");
   await expect(section).toContainText(/Blocks are not included/i);
+});
+
+test("home page explains the Tokens-only start and moving an existing shadcn app", async ({ page }) => {
+  await page.goto("/");
+  const section = page.getByRole("region", { name: "Style" });
+  await expect(section).toContainText("npx shadcn init chandratand/ui/tokens");
+  await expect(section).toContainText('"style": "new-york"');
+  await expect(section).toContainText("npx shadcn add chandratand/ui/style --overwrite");
 });
 
 test("home page shows the Tokens", async ({ page }) => {

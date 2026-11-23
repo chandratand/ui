@@ -24,6 +24,14 @@ function Section({ id, title, children }: { id: string; title: string; children:
   );
 }
 
+function Command({ children }: { children: string }) {
+  return (
+    <pre className="w-fit rounded-md border border-border bg-muted px-3 py-2 font-mono text-sm">
+      <code>{children}</code>
+    </pre>
+  );
+}
+
 export default function Home() {
   return (
     <main className="mx-auto flex max-w-5xl flex-col gap-12 px-6 py-12">
@@ -38,11 +46,32 @@ export default function Home() {
 
       <Section id="style" title="Style">
         <p className="max-w-2xl text-muted-foreground">
-          Bootstrap a Consumer app with one command: it installs the Tokens and every Component.
+          Start a Consumer app with one command: it installs the Tokens and every Component.
         </p>
-        <pre className="w-fit rounded-md border border-border bg-muted px-3 py-2 font-mono text-sm">
-          <code>npx shadcn add chandratand/ui/style</code>
-        </pre>
+        <Command>npx shadcn init chandratand/ui/style</Command>
+        <p className="max-w-2xl text-muted-foreground">
+          Or start with the Tokens only and add Components as you need them:
+        </p>
+        <Command>
+          {"npx shadcn init chandratand/ui/tokens\nnpx shadcn add chandratand/ui/button"}
+        </Command>
+        <p className="max-w-2xl text-muted-foreground">
+          Use <code className="font-mono text-sm">init</code> with one of these instead of a plain{" "}
+          <code className="font-mono text-sm">shadcn init</code>: the Components are built on Radix,
+          and a plain init now sets the app up for Base UI, which makes the CLI rewrite them into
+          code that does not compile.
+        </p>
+        <p className="max-w-2xl text-muted-foreground">
+          Already a shadcn app? If <code className="font-mono text-sm">style</code> in{" "}
+          <code className="font-mono text-sm">components.json</code> starts with{" "}
+          <code className="font-mono text-sm">base-</code>, change it to{" "}
+          <code className="font-mono text-sm">&quot;style&quot;: &quot;new-york&quot;</code> first.
+          Then add with <code className="font-mono text-sm">--overwrite</code>, so our Components
+          replace shadcn&apos;s files of the same name, and swap any Base UI{" "}
+          <code className="font-mono text-sm">render</code> props in your own code for{" "}
+          <code className="font-mono text-sm">asChild</code>:
+        </p>
+        <Command>npx shadcn add chandratand/ui/style --overwrite</Command>
         <p className="max-w-2xl text-muted-foreground">
           Blocks are not included: the app owns and edits a Block after install, so add each one on
           its own from its docs page, e.g.{" "}
@@ -77,8 +106,8 @@ export default function Home() {
 
       <Section id="tokens" title="Tokens">
         <p className="max-w-2xl text-muted-foreground">
-          Every Component is styled through these. Install them first with{" "}
-          <code className="font-mono text-sm">npx shadcn add chandratand/ui/tokens</code>.
+          Every Component is styled through these. The Style installs them, or install them alone
+          with <code className="font-mono text-sm">npx shadcn init chandratand/ui/tokens</code>.
         </p>
         <div className="flex flex-col gap-3">
           <h3 className="text-lg font-semibold">Brand ramp</h3>
