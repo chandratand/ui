@@ -456,7 +456,10 @@
           "path": "registry/chandratand/ui/dialog.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "css": {
+        "@import \"tw-animate-css\"": {}
+      }
     },
     {
       "name": "sheet",
@@ -477,7 +480,10 @@
           "path": "registry/chandratand/ui/sheet.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "css": {
+        "@import \"tw-animate-css\"": {}
+      }
     },
     {
       "name": "alert-dialog",
@@ -497,7 +503,10 @@
           "path": "registry/chandratand/ui/alert-dialog.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "css": {
+        "@import \"tw-animate-css\"": {}
+      }
     },
     {
       "name": "dropdown-menu",
@@ -517,7 +526,10 @@
           "path": "registry/chandratand/ui/dropdown-menu.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "css": {
+        "@import \"tw-animate-css\"": {}
+      }
     },
     {
       "name": "tooltip",
@@ -536,7 +548,10 @@
           "path": "registry/chandratand/ui/tooltip.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "css": {
+        "@import \"tw-animate-css\"": {}
+      }
     },
     {
       "name": "sonner",
@@ -574,7 +589,10 @@
           "path": "registry/chandratand/ui/popover.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "css": {
+        "@import \"tw-animate-css\"": {}
+      }
     },
     {
       "name": "tabs",

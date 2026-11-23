@@ -19,5 +19,8 @@
       "type": "registry:ui"
     }
   ],
+  "css": {
+    "@import \"tw-animate-css\"": {}
+  },
   "type": "registry:ui"
 }
