@@ -90,7 +90,7 @@ export function AppShell({
     <SidebarProvider defaultOpen={defaultSidebarOpen}>
       <a
         href={`#${mainId}`}
-        className={`sr-only z-50 rounded-md border border-border bg-background text-sm font-medium text-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:flex focus:h-control-md focus:items-center focus:px-3 ${focusRing}`}
+        className={`sr-only z-50 rounded-md border border-border bg-popover text-sm font-medium text-popover-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:flex focus:h-control-md focus:items-center focus:px-3 ${focusRing}`}
       >
         Skip to content
       </a>

@@ -25,7 +25,7 @@ function SelectValue(props: React.ComponentProps<typeof SelectPrimitive.Value>) 
 
 const selectTriggerVariants = cva(
   [
-    "flex w-full min-w-0 items-center justify-between gap-2 whitespace-nowrap rounded-md border border-input bg-background text-foreground",
+    "flex w-full min-w-0 items-center justify-between gap-2 whitespace-nowrap rounded-md border border-input bg-card text-foreground",
     "data-[placeholder]:text-muted-foreground",
     "transition-colors duration-(--duration-fast) ease-standard",
     "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",

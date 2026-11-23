@@ -12,7 +12,7 @@ function Textarea({ className, rows = 3, ...props }: React.ComponentProps<"texta
       data-slot="textarea"
       rows={rows}
       className={cn(
-        "flex w-full min-w-0 resize-y rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground",
+        "flex w-full min-w-0 resize-y rounded-md border border-input bg-card px-3 py-2 text-sm text-foreground",
         "placeholder:text-muted-foreground",
         "transition-colors duration-(--duration-fast) ease-standard",
         "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",

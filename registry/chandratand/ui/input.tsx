@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 const inputVariants = cva(
   [
-    "flex w-full min-w-0 rounded-md border border-input bg-background text-foreground",
+    "flex w-full min-w-0 rounded-md border border-input bg-card text-foreground",
     "placeholder:text-muted-foreground",
     "transition-colors duration-(--duration-fast) ease-standard",
     "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",

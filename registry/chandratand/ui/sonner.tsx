@@ -33,7 +33,7 @@ function Toaster({ toastOptions, ...props }: ToasterProps) {
           actionButton:
             "inline-flex h-control-sm shrink-0 items-center rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground hover:bg-primary-hover",
           cancelButton:
-            "inline-flex h-control-sm shrink-0 items-center rounded-md border border-input bg-background px-3 text-sm font-medium hover:bg-accent",
+            "inline-flex h-control-sm shrink-0 items-center rounded-md border border-input bg-card px-3 text-sm font-medium hover:bg-accent",
           closeButton:
             "absolute top-2 right-2 rounded-md p-1 text-muted-foreground hover:bg-accent hover:text-accent-foreground",
           success: "[&_[data-icon]]:text-success",

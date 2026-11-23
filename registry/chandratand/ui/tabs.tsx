@@ -60,7 +60,7 @@ function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPr
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:size-icon-sm [&_svg]:stroke-[1.5]",
         // segmented
         "group-data-[variant=segmented]/tabs-list:h-[calc(var(--control-md)-0.5rem)] group-data-[variant=segmented]/tabs-list:rounded-sm group-data-[variant=segmented]/tabs-list:px-3",
-        "group-data-[variant=segmented]/tabs-list:data-[state=active]:bg-background group-data-[variant=segmented]/tabs-list:data-[state=active]:text-foreground group-data-[variant=segmented]/tabs-list:data-[state=active]:shadow-sm",
+        "group-data-[variant=segmented]/tabs-list:data-[state=active]:bg-card group-data-[variant=segmented]/tabs-list:data-[state=active]:text-foreground group-data-[variant=segmented]/tabs-list:data-[state=active]:shadow-sm",
         // line: 2px indicator sits on the list border
         "group-data-[variant=line]/tabs-list:h-control-md group-data-[variant=line]/tabs-list:px-1 group-data-[variant=line]/tabs-list:rounded-sm",
         "group-data-[variant=line]/tabs-list:data-[state=active]:text-foreground",

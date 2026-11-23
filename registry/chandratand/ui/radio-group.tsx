@@ -22,7 +22,7 @@ function RadioGroup({ className, ...props }: React.ComponentProps<typeof RadioGr
 
 const radioItemVariants = cva(
   [
-    "peer relative inline-flex aspect-square shrink-0 items-center justify-center rounded-full border border-input bg-background",
+    "peer relative inline-flex aspect-square shrink-0 items-center justify-center rounded-full border border-input bg-card",
     "after:absolute after:content-['']",
     "transition-colors duration-(--duration-fast) ease-standard",
     "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",

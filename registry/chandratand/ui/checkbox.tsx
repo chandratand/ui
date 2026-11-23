@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
  */
 const checkboxVariants = cva(
   [
-    "peer group relative inline-flex shrink-0 items-center justify-center rounded-sm border border-input bg-background text-primary-foreground",
+    "peer group relative inline-flex shrink-0 items-center justify-center rounded-sm border border-input bg-card text-primary-foreground",
     "after:absolute after:content-['']",
     "transition-colors duration-(--duration-fast) ease-standard",
     "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
