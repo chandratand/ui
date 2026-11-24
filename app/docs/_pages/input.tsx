@@ -22,7 +22,7 @@ export function InputDocs() {
       <DocsSection title="Sizes">
         <p className="text-muted-foreground">
           <code className={code}>sm</code> 32px for dense forms,{" "}
-          <code className={code}>md</code> 36px (default), <code className={code}>lg</code> 44px
+          <code className={code}>md</code> 40px (default), <code className={code}>lg</code> 48px
           for touch. Match the size of the buttons next to it.
         </p>
         <div className="flex max-w-sm flex-col gap-4">

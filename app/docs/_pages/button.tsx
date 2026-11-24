@@ -27,8 +27,8 @@ export function ButtonDocs() {
       <DocsSection title="Sizes">
         <p className="text-muted-foreground">
           <code className="font-mono text-sm">sm</code> 32px for dense screens,{" "}
-          <code className="font-mono text-sm">md</code> 36px (default),{" "}
-          <code className="font-mono text-sm">lg</code> 44px for touch.{" "}
+          <code className="font-mono text-sm">md</code> 40px (default),{" "}
+          <code className="font-mono text-sm">lg</code> 48px for touch.{" "}
           <code className="font-mono text-sm">icon</code> is square and needs an{" "}
           <code className="font-mono text-sm">aria-label</code>.
         </p>

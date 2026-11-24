@@ -3,10 +3,11 @@
 @import "../tokens/tokens.css";
 @import "../tokens/theme.css";
 
-/* App-level: this Next.js app loads Geist via next/font and feeds it into the tokens.
+/* App-level: this Next.js app loads Inter, Montserrat and Geist Mono via next/font and feeds it into the tokens.
    Components never reference a font directly. */
 html {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-montserrat), var(--font-sans);
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 

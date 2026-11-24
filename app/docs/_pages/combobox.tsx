@@ -52,8 +52,8 @@ export function ComboboxDocs() {
       <DocsSection title="Sizes">
         <p className="text-muted-foreground">
           Same heights as Select: <code className="font-mono text-sm">sm</code> 32px,{" "}
-          <code className="font-mono text-sm">md</code> 36px (default),{" "}
-          <code className="font-mono text-sm">lg</code> 44px.
+          <code className="font-mono text-sm">md</code> 40px (default),{" "}
+          <code className="font-mono text-sm">lg</code> 48px.
         </p>
         <div className="flex max-w-xs flex-col gap-4">
           {(["sm", "md", "lg"] as const).map((size) => (

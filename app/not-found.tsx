@@ -6,7 +6,7 @@ export default function NotFound() {
       <h1 className="text-4xl font-semibold">Page not found</h1>
       <p className="text-muted-foreground">
         Nothing lives at this address. The item may not have a docs page yet.{" "}
-        <Link href="/" className="text-primary underline underline-offset-4">
+        <Link href="/" className="text-link underline underline-offset-4">
           Back to the docs home
         </Link>
       </p>
