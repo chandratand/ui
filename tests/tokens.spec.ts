@@ -62,7 +62,7 @@ for (const mode of modes) {
       }
     });
 
-    // EXPERIMENT: input borders follow the portfolio's faint look, so only the ring is held to 3:1.
+    // Input borders follow the portfolio's faint look, so only the ring is held to 3:1.
     test("the focus ring meets 3:1 on every surface", () => {
       for (const surface of surfaces) {
         expect(contrast(vars.ring, vars[surface]), `ring on ${surface}`).toBeGreaterThanOrEqual(3);

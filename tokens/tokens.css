@@ -1,8 +1,7 @@
 /*
  * chandratand/ui tokens — framework-agnostic CSS variables.
- * EXPERIMENT (branch experiment/portfolio-tokens): values taken from the portfolio's
- * pre-chandratand/ui theme (venice-blue ramp, shadcn radius 0.5rem, 32/40/48 controls,
- * Inter + Montserrat). Token names and structure are unchanged.
+ * Values follow the portfolio's theme (venice-blue ramp, shadcn radius 0.5rem,
+ * 32/40/48 controls, Inter + Montserrat).
  *   1. Dark mode uses the `.dark` class (shadcn / next-themes standard).
  *   2. Brand is a separate axis: `data-brand="<name>"` on <html>. Mode and brand combine freely.
  * Primitive ramps → semantic tokens (shadcn names). Brands override semantic tokens only.
@@ -99,7 +98,7 @@
   --accent: var(--brand-200);
   --accent-foreground: var(--brand-800);
   --border: var(--brand-200);
-  --input: var(--brand-200);                  /* EXPERIMENT: below 3:1 by choice, matches the portfolio */
+  --input: var(--brand-200);                  /* below 3:1 by choice: the portfolio's faint look */
   --ring: var(--brand-500);
   --link: var(--brand-600);
   --overlay: oklch(0 0 0 / 0.5);               /* dialog/sheet scrim */
@@ -149,7 +148,7 @@
   --accent: var(--neutral-800);
   --accent-foreground: var(--neutral-100);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);                 /* EXPERIMENT: below 3:1 by choice, matches the portfolio */
+  --input: oklch(1 0 0 / 15%);                 /* below 3:1 by choice: the portfolio's faint look */
   --ring: var(--brand-500);
   --link: var(--brand-400);                    /* primary brand-600 is 3.35:1 as text here */
   --overlay: oklch(0 0 0 / 0.7);               /* dialog/sheet scrim */

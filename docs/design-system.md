@@ -103,7 +103,7 @@ Everything else (neutrals, status colours, radius, sizes, motion) is shared by e
 | `link` | Link text (Button `link`, inline links); separate from `primary` so dark mode can keep a deeper primary fill | brand-600 | brand-400 |
 | `overlay` | Scrim behind dialogs and sheets | black 50% | black 70% |
 
-`border` vs `input` matters: `border` is allowed to be faint because it's decoration. `input` marks where a control is, so WCAG asks for 3:1. **Experiment exception:** this branch keeps the portfolio's faint input border (about 1.3:1 light, 1.5:1 dark) because it looks better, so `tests/tokens.spec.ts` no longer checks `input`. The focus ring still meets 3:1.
+`border` vs `input` matters: `border` is allowed to be faint because it's decoration. `input` marks where a control is, so WCAG asks for 3:1. **Exception:** chandratand/ui keeps the portfolio's faint input border (about 1.3:1 light, 1.5:1 dark) because it looks better, so `tests/tokens.spec.ts` no longer checks `input`. The focus ring still meets 3:1.
 
 **Surfaces get lighter as they rise, in both Modes.** The page (`background`) is the darkest surface; `card` and `popover` sit on it and are lighter. That is why the light page is off-white rather than white: a white card on a white page is held apart by its border alone. In dark Mode, near-black rather than black does the same job, since shadows don't show on black. So in a component:
 
@@ -240,7 +240,7 @@ Exceptions:
 Target: **WCAG 2.2 AA**.
 
 - Text ≥ **4.5:1** against its background (large text ≥ 3:1).
-- Form control borders, focus rings and meaningful icons ≥ **3:1**. That's why `--input` exists separately from `--border`. (On this experiment branch `--input` is knowingly below it; see 4.1.)
+- Form control borders, focus rings and meaningful icons ≥ **3:1**. That's why `--input` exists separately from `--border`. (`--input` is knowingly below it; see 4.1.)
 - Focus is always visible (`focus-visible` ring, never removed without a replacement).
 - Status always pairs **colour with an icon or text** (badges, alerts, toasts).
 - Small controls (checkbox, radio, switch) get an invisible `::after` hit area of 24px, or 44px at `size="lg"`.
